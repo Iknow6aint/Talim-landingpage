@@ -1,3 +1,7 @@
+import EarlyAccess from "@/components/EarlyAccess";
+import FaqSection from "@/components/FaqSection";
+import FeaturesSlider from "@/components/FeaturesSlider";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HowTalimWorks from "@/components/HowTalimWorks";
@@ -10,6 +14,12 @@ export default function Home() {
       <Hero />
       <Slideshow/>
       <HowTalimWorks/>
+      <FeaturesSlider/>
+      <EarlyAccess/>
+      <FaqSection/>
+      <Footer/>
+
     </main>
+    
   );
 }
