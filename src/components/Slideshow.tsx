@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 // Import images
-import grd from "@/asserts/Gradient.png";
 import reason1 from "@/asserts/reason 1.png";
 import reason2 from "@/asserts/reason 2.png";
 import reason3 from "@/asserts/reason 3.png";
 import reason4 from "@/asserts/reason 4.png";
-import reason5 from "@/asserts/reason 4.png";
+import reason5 from "@/asserts/reason 4.png"; 
 
 // Slides array
 const slides = [
@@ -21,23 +20,26 @@ const slides = [
 
 export default function Slideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [nextIndex, setNextIndex] = useState(1);
+  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsAnimating(true);
+      setIsFading(true);
+
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-        setIsAnimating(false);
-      }, 500); // Transition duration (matches CSS)
+        setCurrentIndex(nextIndex);
+        setNextIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+        setIsFading(false);
+      }, 500); // Transition duration
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [nextIndex]);
 
   return (
     <div className="flex flex-col md:flex-row h-screen md:h-[80vh] lg:h-[700px] w-full">
-      {/* Left Section - Static */}
+      {/* Left Section - Static Content */}
       <div className="w-full md:w-1/2 bg-[#F68F35] text-white p-6 md:p-10 flex flex-col justify-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           A Platform Built for Everyone in Education
@@ -48,13 +50,10 @@ export default function Slideshow() {
         </p>
       </div>
 
-      {/* Right Section - Dynamic */}
+      {/* Right Section - Dynamic Image & Text */}
       <div className="w-full md:w-1/2 relative h-64 md:h-[80vh] lg:h-[700px] overflow-hidden">
-        {/* Background Image with Fade & Slide Animation */}
-        <div
-          key={currentIndex} // Forces re-render on change
-          className={`absolute inset-0 w-full h-full transition-opacity ease-out duration-500 ${isAnimating ? "opacity-0 translate-x-10" : "opacity-100 translate-x-0"}`}
-        >
+        {/* Current Image */}
+        <div className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out opacity-100">
           <Image
             src={slides[currentIndex].image}
             alt={slides[currentIndex].title}
@@ -64,12 +63,28 @@ export default function Slideshow() {
           />
         </div>
 
-        {/* Overlay with Text */}
+        {/* Next Image (Fades In) */}
         <div
-          className="absolute inset-0 flex items-end p-10 transition-opacity ease-out duration-500"
-          
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-out ${
+            isFading ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <div className={`text-white transition-opacity ease-out duration-500 ${isAnimating ? "opacity-0 translate-y-5" : "opacity-100 translate-y-0"}`}>
+          <Image
+            src={slides[nextIndex].image}
+            alt={slides[nextIndex].title}
+            layout="fill"
+            objectFit="cover"
+            className="w-full h-full"
+          />
+        </div>
+
+        {/* Overlay with Text */}
+        <div className="absolute inset-0 flex items-end p-10">
+          <div
+            className={`text-white transition-opacity duration-500 ease-out ${
+              isFading ? "opacity-0 translate-y-5" : "opacity-100 translate-y-0"
+            }`}
+          >
             <h3 className="text-xl md:text-2xl font-semibold">
               {slides[currentIndex].title}
             </h3>
