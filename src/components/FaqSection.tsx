@@ -1,3 +1,6 @@
+import dashboard from "@/asserts/school dashboard mockup transparent 3.png"
+
+
 export default function FaqSection() {
     return (
       <section className="bg-gray-100 py-16 px-6 md:px-16 lg:px-24">
@@ -17,7 +20,7 @@ export default function FaqSection() {
             {/* Overlapping Dashboard Image */}
             <div className="mt-8 relative">
               <img
-                src="/dashboard-preview.png" // Replace with actual image path
+                src= {dashboard.src}
                 alt="Dashboard Preview"
                 className="mx-auto shadow-lg rounded-lg"
               />
