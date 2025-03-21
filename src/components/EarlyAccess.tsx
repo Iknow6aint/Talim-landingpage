@@ -1,6 +1,6 @@
 export default function EarlyAccess() {
     return (
-      <section className="bg-[#EAB89F] py-16 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#F8D0AC] py-16 px-6 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto text-center">
           {/* Heading */}
           <h2 className="text-2xl md:text-3xl font-bold text-[#003366]">
