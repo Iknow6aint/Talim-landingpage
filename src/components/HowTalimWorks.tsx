@@ -1,79 +1,84 @@
-import React from "react";
 import FeatureCard from "./FeatureCard";
-import real from "@/asserts/how123.png";
-import real2 from "@/asserts/how234.png";
 
-const HowTalimWorks: React.FC = () => {
-  const sections = [
-    {
-      category: "For Schools",
-      bgColor: "bg-school ",
-      features: [
-        {
-          title: "🏫 Teach Without Interruptions, Online or Offline",
-          description: "Update grades, take attendance, and assign lessons anytime, anywhere.",
-          imageSrc: real, // ✅ Corrected
-        },
-        {
-          title: "🏫 Teach Without Interruptions, Online or Offline",
-          description: "Update grades, take attendance, and assign lessons anytime, anywhere.",
-          imageSrc: real, // ✅ Corrected
-        },
-      ],
-    },
-    {
-      category: "For Teachers",
-      bgColor: "bg-school ",
-      features: [
-        {
-          title: "📚 Designed for West African Classrooms",
-          description: "TALIM makes teaching easy by giving you tools designed for West African curricula.",
-          imageSrc: real, // ✅ Corrected
-        },
-        {
-          title: "📚 Teach Without Interruptions, Online or Offline",
-          description: "Update grades, take attendance, and assign lessons anytime, anywhere.",
-          imageSrc: real2, // ✅ Corrected
-        },
-      ],
-    },
-    {
-      category: "For Students",
-      bgColor: "bg-[#F58220] text-black",
-      features: [
-        {
-          title: "🎓 Teach Without Interruptions, Online or Offline",
-          description: "Update grades, take attendance, and assign lessons anytime, anywhere.",
-          imageSrc: real,
-        },
-        {
-          title: "🎓 Teach Without Interruptions, Online or Offline",
-          description: "Update grades, take attendance, and assign lessons anytime, anywhere.",
-          imageSrc: real,
-        },
-      ],
-    },
-    {
-      category: "For Parents",
-      bgColor: "bg-[#F58220] text-black",
-      features: [
-        {
-          title: "👨‍👩‍👧 Parents Stay Informed, Instantly",
-          description: "Help parents stay involved with their children.",
-          imageSrc: real,
-        },
-        {
-          title: "🎓 Teach Without Interruptions, Online or Offline",
-          description: "Update grades, take attendance, and assign lessons anytime, anywhere.",
-          imageSrc: real,
-        },
-      ],
-    },
-  ];
+const sections = [
+  {
+    category: "For Schools",
+    bgColor: "bg-[#0A4076] text-white",
+    features: [
+      {
+        title: "🏫 Teach Without Interruptions, Online or Offline",
+        description:
+          "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
+        imageSrc: "/images/talim-screenshot-1.png", // Replace with actual path
+      },
+      {
+        title: "🏫 Teach Without Interruptions, Online or Offline",
+        description:
+          "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
+        imageSrc: "/images/talim-screenshot-2.png",
+      },
+    ],
+  },
+  {
+    category: "For Teachers",
+    bgColor: "bg-[#0A4076] text-white",
+    features: [
+      {
+        title: "📚 Designed for West African Classrooms",
+        description:
+          "TALIM makes teaching easy by giving you tools designed for West African curricula, culture, and local needs to teach and learn.",
+        imageSrc: "/images/talim-screenshot-3.png",
+      },
+      {
+        title: "📚 Teach Without Interruptions, Online or Offline",
+        description:
+          "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
+        imageSrc: "/images/talim-screenshot-4.png",
+      },
+    ],
+  },
+  {
+    category: "For Students",
+    bgColor: "bg-[#F58220] text-white",
+    features: [
+      {
+        title: "🎓 Learn at Your Own Pace",
+        description:
+          "Access class materials anytime, submit assignments, and track grades instantly.",
+        imageSrc: "/images/talim-screenshot-5.png",
+      },
+      {
+        title: "🎓 Stay Connected with Teachers",
+        description:
+          "Chat with teachers, ask questions, and get feedback instantly.",
+        imageSrc: "/images/talim-screenshot-6.png",
+      },
+    ],
+  },
+  {
+    category: "For Parents",
+    bgColor: "bg-[#F58220] text-white",
+    features: [
+      {
+        title: "👨‍👩‍👧 Parents Stay Informed, Instantly",
+        description:
+          "Help parents stay involved with their children. TALIM sends real-time alerts to parents about grades, attendance, and school announcements.",
+        imageSrc: "/images/talim-screenshot-7.png",
+      },
+      {
+        title: "🎓 Track Your Child’s Progress",
+        description:
+          "Monitor assignments, grades, and school activities anytime, anywhere.",
+        imageSrc: "/images/talim-screenshot-8.png",
+      },
+    ],
+  },
+];
 
+const HowTalimWorks = () => {
   return (
-    <section className="bg-[#0A4076]">
-      <h2 className=" text-center  text-white text-2xl md:text-3xl font-bold py-8   mb-8">How Talim Works</h2>
+    <section>
+      <h2 className="text-center text-3xl font-bold mb-8">How Talim Works</h2>
 
       {sections.map((section, index) => (
         <div key={index} className={`${section.bgColor} py-16 px-4 md:px-6`}>
