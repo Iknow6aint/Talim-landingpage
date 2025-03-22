@@ -1,9 +1,9 @@
 const Hero = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center text-center text-white">
+    <section className="container -top-22 relative h-screen flex items-center justify-center text-center  text-white">
       {/* Background Video */}
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover border-9 rounded-2xl"
         autoPlay
         loop
         muted

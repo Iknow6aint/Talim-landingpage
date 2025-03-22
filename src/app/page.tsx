@@ -9,7 +9,7 @@ import Slideshow from "@/components/Slideshow";
 
 export default function Home() {
   return (
-    <main className="bg-gray-100">
+    <main className="bg-gray-100 space-y-8">
       <Header />
       <Hero />
       <Slideshow/>

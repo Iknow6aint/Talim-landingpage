@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased bg-gray-100`}>
-        <div className="container">{children}</div> {/* ✅ Enforce max-width */}
+        <div >{children}</div> {/* ✅ Enforce max-width */}
       </body>
     </html>
   );

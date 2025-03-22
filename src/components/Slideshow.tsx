@@ -38,7 +38,7 @@ export default function Slideshow() {
   }, [nextIndex]);
 
   return (
-    <div className="flex flex-col md:flex-row h-screen md:h-[80vh] lg:h-[700px] w-full">
+    <div className="lg:my-12 flex flex-col md:flex-row h-screen md:h-[80vh] lg:h-[700px] w-full">
       {/* Left Section - Static Content */}
       <div className="w-full md:w-1/2 bg-[#F68F35] text-white p-6 md:p-10 flex flex-col justify-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">

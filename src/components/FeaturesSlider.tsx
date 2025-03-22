@@ -42,7 +42,7 @@ const FeaturesSlider = () => {
   };
 
   return (
-    <div className="relative w-full max-w-screen-xl mx-auto overflow-hidden px-4">
+    <div className=" relative w-full max-w-screen-xl   mx-auto overflow-hidden px-4">
       {/* Title */}
       <h2 className="text-center text-3xl font-bold text-blue-900 mb-6">Do More With Talim</h2>
 

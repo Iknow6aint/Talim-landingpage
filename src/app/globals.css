@@ -2,7 +2,7 @@
 
 /* Global container for all components */
 .container {
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 0.35rem; /* Adds spacing on small screens */
 }
