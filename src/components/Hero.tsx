@@ -3,7 +3,7 @@ const Hero = () => {
     <section className="container  relative h-screen flex items-center justify-center text-center  text-white">
       {/* Background Video */}
       <video
-        className="absolute inset-0 w-full h-full object-cover border-9 rounded-2xl"
+        className="absolute inset-0 w-full h-full object-cover border-blue-400 border-9   rounded-2xl "
         autoPlay
         loop
         muted

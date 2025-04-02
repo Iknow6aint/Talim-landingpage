@@ -4,7 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-import dashboard1 from "@/asserts/africa.png";
+import dashboard1 from "@/asserts/dash.png";
+import dashboard2 from "@/asserts/Product Info Carda.png";
+import dashboard3 from "@/asserts/Image.png";
 const slides = [
   {
     id: 1,
@@ -18,14 +20,14 @@ const slides = [
     title: "📊 Track Performance with Insights",
     description:
       "Get real-time analytics on student performance, attendance, and engagement in one dashboard.",
-    image: dashboard1,
+    image: dashboard2,
   },
   {
     id: 3,
     title: "📝 Streamline Academic Tasks",
     description:
       "Automate grading, class schedules, and resource sharing to make education management effortless.",
-    image: dashboard1,
+    image: dashboard3,
   },
 ];
 
