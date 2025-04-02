@@ -1,92 +1,120 @@
-"use client"; // Ensure this is a client component
+"use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import Image from "next/image"; // Import next/image for optimized images
-import how1 from "@/asserts/how123.png"; // Import your images directly if needed
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
-const categories = [
+import dashboard1 from "@/asserts/africa.png";
+const slides = [
   {
     id: 1,
-    title: "Teach Without Interruptions, Online or Offline",
+    title: "📚 Teach Without Interruptions, Online or Offline",
     description:
       "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
-    image: how1, // Use the relative path for images in the public folder
+    image: dashboard1,
   },
   {
     id: 2,
-    title: "Engage Students Effortlessly",
+    title: "📊 Track Performance with Insights",
     description:
-      "Interactive tools help students stay engaged, participate in discussions, and track their progress.",
-    image: "/how123.png", // Same here
+      "Get real-time analytics on student performance, attendance, and engagement in one dashboard.",
+    image: dashboard1,
   },
   {
     id: 3,
-    title: "Automate Administrative Tasks",
+    title: "📝 Streamline Academic Tasks",
     description:
-      "Save time by automating attendance, grading, and resource management with Talim.",
-    image: "/images/automation.png", // Public folder image
+      "Automate grading, class schedules, and resource sharing to make education management effortless.",
+    image: dashboard1,
   },
 ];
 
-export default function HowTalimWorks() {
+export default function TalimOffers() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
   return (
-    <div className="relative w-full  px-4">
-      <h2 className="text-2xl font-semibold text-center mb-6">
+    <div className="container w-full max-w-[1200px] mx-auto text-center px-6 py-12">
+      {/* Heading */}
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
         What Talim Offers
       </h2>
-      <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={30}
-        slidesPerView={1}
-        navigation={{
-          nextEl: ".next-button",
-          prevEl: ".prev-button",
-        }}
-        pagination={{ clickable: true }}
-        className="w-full"
-      >
-        {categories.map((category, index) => (
-          <SwiperSlide key={category.id} className="flex items-center">
-            <div className="flex flex-col md:flex-row items-center gap-6 p-6 bg-white rounded-lg shadow-lg">
-              {/* Left Side: Number & Text */}
-              <div className="flex flex-col md:w-1/2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-full text-lg">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold">{category.title}</h3>
-                </div>
-                <p className="text-gray-600 mt-3">{category.description}</p>
-              </div>
 
-              {/* Right Side: Image */}
-              <div className="md:w-1/2">
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  layout="responsive" // Makes the image responsive
-                  width={500} // Aspect ratio
-                  height={300} // Aspect ratio
-                  className="rounded-lg shadow-md"
-                />
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {/* Content Section */}
+      <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Left Side - Text */}
+        <div className="md:w-1/2 text-left">
+          <span className="text-blue-600 text-lg font-semibold">
+            0{currentSlide + 1}
+          </span>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slides[currentSlide].id}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-xl font-semibold mt-2">
+                {slides[currentSlide].title}
+              </h3>
+              <p className="mt-2 text-gray-600">{slides[currentSlide].description}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Right Side - Image */}
+        <div className="md:w-1/2 flex justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slides[currentSlide].image.src}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                src={slides[currentSlide].image}
+                alt="Talim Dashboard"
+                width={600}
+                height={787} // Set height to match the design
+                className="rounded-lg shadow-md"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
 
       {/* Navigation Buttons */}
       <div className="flex justify-between items-center mt-6">
-        <button className="prev-button flex items-center gap-2 bg-gray-200 px-4 py-2 rounded-md">
-          <FaArrowLeft /> Previous
+        <button
+          onClick={prevSlide}
+          className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
+        >
+          ← Previous
         </button>
-        <button className="next-button flex items-center gap-2 bg-gray-200 px-4 py-2 rounded-md">
-          Next <FaArrowRight />
+        <div className="flex gap-1">
+          {slides.map((_, index) => (
+            <span
+              key={index}
+              className={`w-3 h-3 rounded-full transition ${
+                currentSlide === index ? "bg-blue-600" : "bg-gray-400"
+              }`}
+            ></span>
+          ))}
+        </div>
+        <button
+          onClick={nextSlide}
+          className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
+        >
+          Next →
         </button>
       </div>
     </div>

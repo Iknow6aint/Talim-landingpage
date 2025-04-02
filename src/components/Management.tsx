@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
 import { HiBriefcase } from "react-icons/hi";
-import pro from "@/asserts/Product Info Card.png"
+import pro from "@/asserts/Product Info Card.png";
 
 export default function ManagementSection() {
   return (
@@ -34,13 +34,13 @@ export default function ManagementSection() {
       </div>
 
       {/* Right Section - Tablet Mockup */}
-      <div className="mt-10 md:mt-0">
+      <div className="mt-10 md:mt-0 flex justify-center">
         <Image
-          src={pro} // Replace with actual image path
+          src={pro}
           alt="Dashboard UI on Tablet"
           width={600}
-        
-          className="w-full max-w-[500px] shadow-lg rounded-xl"
+          height={477} // 👈 Ensures exact height of 477px
+          className="max-w-[500px] h-[477px] w-auto object-cover shadow-lg rounded-xl"
         />
       </div>
     </div>

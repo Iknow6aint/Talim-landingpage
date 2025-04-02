@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import reason1 from "@/asserts/reason 2.png";
+import reason1 from "@/asserts/reason 1.png";
+import reason2 from "@/asserts/reason 2.png";
+import reason3 from "@/asserts/reason 3.png";
+import reason4 from "@/asserts/reason 4.png";
 
 const roles = [
-  { title: "School Principals", image: reason1, size: "lg:w-[60%]" },
-  { title: "Teachers", image: reason1, size: "lg:w-[35%]" },
-  { title: "Parents", image: reason1, size: "lg:w-[35%]" },
-  { title: "Students", image: reason1, size: "lg:w-[60%]" },
+  { title: "School Principals", image: reason1, size: "md:w-[60%]" }, // Larger width
+  { title: "Teachers", image: reason2, size: "md:w-[35%]" }, // Smaller width
+  { title: "Parents", image: reason3, size: "md:w-[35%]" }, // Smaller width
+  { title: "Students", image: reason4, size: "md:w-[60%]" }, // Larger width
 ];
 
 export default function EducationPlatform() {
@@ -27,19 +30,19 @@ export default function EducationPlatform() {
         {roles.map((role, index) => (
           <div
             key={index}
-            className={`relative group overflow-hidden rounded-xl w-full md:w-[48%] ${role.size}`}
+            className={`relative group overflow-hidden rounded-xl w-full ${role.size} h-[250px]`} // Reduced height
           >
             {/* Image */}
             <Image
               src={role.image}
               alt={role.title}
               width={600}
-              height={400}
+              height={250} // Adjusted height
               className="w-full h-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
             />
             
             {/* Overlay */}
-            <div className="absolute inset-0  flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/4 flex items-center justify-center">
               <h3 className="text-white text-lg font-semibold">{role.title}</h3>
             </div>
           </div>
