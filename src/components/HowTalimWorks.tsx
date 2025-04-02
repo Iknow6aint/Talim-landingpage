@@ -1,112 +1,94 @@
-import FeatureCard from "./FeatureCard";
-import how1 from "@/asserts/how123.png";
-import how2 from "@/asserts/how234.png";
+"use client"; // Ensure this is a client component
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Image from "next/image"; // Import next/image for optimized images
+import how1 from "@/asserts/how123.png"; // Import your images directly if needed
 
-const sections = [
+const categories = [
   {
-    category: "For Schools",
-    bgColor: "bg-[#0A4076] ",
-    features: [
-      {
-        title: "🏫 Teach Without Interruptions, Online or Offline",
-        description:
-          "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
-        imageSrc: how1.src, // Replace with actual path
-      },
-      {
-        title: "🏫 Teach Without Interruptions, Online or Offline",
-        description:
-          "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
-        imageSrc:how1.src,
-      },
-    ],
+    id: 1,
+    title: "Teach Without Interruptions, Online or Offline",
+    description:
+      "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
+    image: how1, // Use the relative path for images in the public folder
   },
   {
-    category: "For Teachers",
-    bgColor: "bg-[#0A4076] ",
-    features: [
-      {
-        title: "📚 Designed for West African Classrooms",
-        description:
-          "TALIM makes teaching easy by giving you tools designed for West African curricula, culture, and local needs to teach and learn.",
-        imageSrc:how1.src,
-      },
-      {
-        title: "📚 Teach Without Interruptions, Online or Offline",
-        description:
-          "Update grades, take attendance, and assign lessons anytime, anywhere. Everything syncs automatically when you reconnect.",
-        imageSrc: how1.src,
-      },
-    ],
+    id: 2,
+    title: "Engage Students Effortlessly",
+    description:
+      "Interactive tools help students stay engaged, participate in discussions, and track their progress.",
+    image: "/how123.png", // Same here
   },
   {
-    category: "For Students",
-    bgColor: "bg-[#F68F35] ",
-    features: [
-      {
-        title: "🎓 Learn at Your Own Pace",
-        description:
-          "Access class materials anytime, submit assignments, and track grades instantly.",
-        imageSrc: how2.src,
-      },
-      {
-        title: "🎓 Stay Connected with Teachers",
-        description:
-          "Chat with teachers, ask questions, and get feedback instantly.",
-        imageSrc: how2.src,
-      },
-    ],
-  },
-  {
-    category: "For Parents",
-    bgColor: "bg-[#F68F35]",
-    features: [
-      {
-        title: "👨‍👩‍👧 Parents Stay Informed, Instantly",
-        description:
-          "Help parents stay involved with their children. TALIM sends real-time alerts to parents about grades, attendance, and school announcements.",
-        imageSrc: how2.src,
-      },
-      {
-        title: "🎓 Track Your Child’s Progress",
-        description:
-          "Monitor assignments, grades, and school activities anytime, anywhere.",
-        imageSrc: how2.src,
-      },
-    ],
+    id: 3,
+    title: "Automate Administrative Tasks",
+    description:
+      "Save time by automating attendance, grading, and resource management with Talim.",
+    image: "/images/automation.png", // Public folder image
   },
 ];
 
-const HowTalimWorks = () => {
+export default function HowTalimWorks() {
   return (
-    <section>
-      <h2 className="text-center text-3xl font-bold mb-8">How Talim Works</h2>
+    <div className="relative w-full  px-4">
+      <h2 className="text-2xl font-semibold text-center mb-6">
+        What Talim Offers
+      </h2>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        spaceBetween={30}
+        slidesPerView={1}
+        navigation={{
+          nextEl: ".next-button",
+          prevEl: ".prev-button",
+        }}
+        pagination={{ clickable: true }}
+        className="w-full"
+      >
+        {categories.map((category, index) => (
+          <SwiperSlide key={category.id} className="flex items-center">
+            <div className="flex flex-col md:flex-row items-center gap-6 p-6 bg-white rounded-lg shadow-lg">
+              {/* Left Side: Number & Text */}
+              <div className="flex flex-col md:w-1/2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-full text-lg">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-semibold">{category.title}</h3>
+                </div>
+                <p className="text-gray-600 mt-3">{category.description}</p>
+              </div>
 
-      {sections.map((section, index) => (
-        <div key={index} className={`${section.bgColor} py-16 px-4 md:px-6`}>
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-y-6">
-            {/* Left Side: Category Title */}
-            <h3 className="text-lg md:text-3xl font-semibold md:w-1/4 w-full text-center md:text-left">
-              {section.category}
-              
-            </h3>
-            <hr className="mt-2 md:mt-4 border-[1px] w-1/4 md:w-1/6 border-white" />
-
-            {/* Right Side: Feature Cards */}
-            <div className="w-full md:w-3/4 flex flex-col md:flex-row md:space-x-6 gap-6">
-            
-              {section.features.map((feature, i) => (
-                
-                <FeatureCard key={i} {...feature} className="w-full md:w-[48%]" />
-                
-              ))}
+              {/* Right Side: Image */}
+              <div className="md:w-1/2">
+                <Image
+                  src={category.image}
+                  alt={category.title}
+                  layout="responsive" // Makes the image responsive
+                  width={500} // Aspect ratio
+                  height={300} // Aspect ratio
+                  className="rounded-lg shadow-md"
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      ))}
-    </section>
-  );
-};
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-export default HowTalimWorks;
+      {/* Navigation Buttons */}
+      <div className="flex justify-between items-center mt-6">
+        <button className="prev-button flex items-center gap-2 bg-gray-200 px-4 py-2 rounded-md">
+          <FaArrowLeft /> Previous
+        </button>
+        <button className="next-button flex items-center gap-2 bg-gray-200 px-4 py-2 rounded-md">
+          Next <FaArrowRight />
+        </button>
+      </div>
+    </div>
+  );
+}

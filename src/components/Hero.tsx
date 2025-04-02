@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <section className="container -top-22 relative h-screen flex items-center justify-center text-center  text-white">
+    <section className="container  relative h-screen flex items-center justify-center text-center  text-white">
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover border-9 rounded-2xl"
@@ -24,7 +24,7 @@ const Hero = () => {
         <p className="mt-4 text-lg">
           We help West African schools manage classes, follow curriculum, and keep parents updated.
         </p>
-        <button className="mt-6 bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md">
+        <button className="mt-6 bg-[#0066CC] text-white px-6 py-3 rounded-lg shadow-md">
           Start free trial
         </button>
       </div>

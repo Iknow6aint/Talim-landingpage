@@ -1,98 +1,63 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import Image from "next/image";
+import reason from "@/asserts/reason 2.png"
 
-// Import images
-import reason1 from "@/asserts/reason 1.png";
-import reason2 from "@/asserts/reason 2.png";
-import reason3 from "@/asserts/reason 3.png";
-import reason4 from "@/asserts/reason 4.png";
-import reason5 from "@/asserts/reason 4.png"; 
-
-// Slides array
-const slides = [
-  { image: reason1, title: "School Principals", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-  { image: reason2, title: "Teachers", description: "Helping teachers manage student records, assignments, and communications with ease." },
-  { image: reason3, title: "Parents", description: "Giving parents real-time insights into their children's academic progress." },
-  { image: reason4, title: "Students", description: "Providing students with the tools they need to succeed in their studies and beyond." },
-  { image: reason5, title: "Administrators", description: "Simplifying school management with powerful, easy-to-use administrative tools." },
+const roles = [
+  {
+    title: "School Principals",
+    image:reason, // Replace with actual path
+    size: "md:col-span-1 md:col-start-2 md:row-span-2", // Standard size
+  },
+  {
+    title: "Teachers",
+    image: reason,
+    size: "md:col-span-1", // Standard size
+  },
+  {
+    title: "Parents",
+    image: reason,
+    size: "md:col-span-1", // Standard size
+  },
+  {
+    title: "Students",
+    image: reason,
+    size: "md:col-span-1 md:col-start-2 md:row-span-2", // Larger width, occupies two rows
+  },
 ];
 
-export default function Slideshow() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextIndex, setNextIndex] = useState(1);
-  const [isFading, setIsFading] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFading(true);
-
-      setTimeout(() => {
-        setCurrentIndex(nextIndex);
-        setNextIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-        setIsFading(false);
-      }, 500); // Transition duration
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [nextIndex]);
-
+export default function EducationPlatform() {
   return (
-    <div className="lg:my-12 flex flex-col md:flex-row h-screen md:h-[80vh] lg:h-[700px] w-full">
-      {/* Left Section - Static Content */}
-      <div className="w-full md:w-1/2 bg-[#F68F35] text-white p-6 md:p-10 flex flex-col justify-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          A Platform Built for Everyone in Education
-        </h2>
-        <p className="text-base md:text-lg">
-          Talim helps administrators, teachers, parents, and students handle
-          academic matters seamlessly—no more endless paperwork.
-        </p>
-      </div>
+    <div className="w-full max-w-[971px] mx-auto text-center px-6 py-12">
+      {/* Heading */}
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        A Platform Built for Everyone in Education
+      </h2>
+      <p className="mt-2 text-lg text-gray-500 max-w-2xl mx-auto">
+        Talim helps administrators, teachers, parents, and students handle
+        academic matters seamlessly, no more endless paperwork.
+      </p>
 
-      {/* Right Section - Dynamic Image & Text */}
-      <div className="w-full md:w-1/2 relative h-64 md:h-[80vh] lg:h-[700px] overflow-hidden">
-        {/* Current Image */}
-        <div className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out opacity-100">
-          <Image
-            src={slides[currentIndex].image}
-            alt={slides[currentIndex].title}
-            layout="fill"
-            objectFit="cover"
-            className="w-full h-full"
-          />
-        </div>
-
-        {/* Next Image (Fades In) */}
-        <div
-          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-out ${
-            isFading ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={slides[nextIndex].image}
-            alt={slides[nextIndex].title}
-            layout="fill"
-            objectFit="cover"
-            className="w-full h-full"
-          />
-        </div>
-
-        {/* Overlay with Text */}
-        <div className="absolute inset-0 flex items-end p-10">
+      {/* Image Grid */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {roles.map((role, index) => (
           <div
-            className={`text-white transition-opacity duration-500 ease-out ${
-              isFading ? "opacity-0 translate-y-5" : "opacity-100 translate-y-0"
-            }`}
+            key={index}
+            className={`relative group overflow-hidden rounded-lg ${role.size || ""}`}
           >
-            <h3 className="text-xl md:text-2xl font-semibold">
-              {slides[currentIndex].title}
-            </h3>
-            <p className="text-sm md:text-lg mt-2">
-              {slides[currentIndex].description}
-            </p>
+            <Image
+              src={role.image}
+              alt={role.title}
+              width={600}
+              height={400}
+              className="w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+            />
+            {/* Overlay */}
+            <div >
+              <h3 className="text-white text-xl font-semibold">{role.title}</h3>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
