@@ -1,29 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import reason from "@/asserts/reason 2.png"
+import reason1 from "@/asserts/reason 2.png";
 
 const roles = [
-  {
-    title: "School Principals",
-    image:reason, // Replace with actual path
-    size: "md:col-span-1 md:col-start-2 md:row-span-2", // Standard size
-  },
-  {
-    title: "Teachers",
-    image: reason,
-    size: "md:col-span-1", // Standard size
-  },
-  {
-    title: "Parents",
-    image: reason,
-    size: "md:col-span-1", // Standard size
-  },
-  {
-    title: "Students",
-    image: reason,
-    size: "md:col-span-1 md:col-start-2 md:row-span-2", // Larger width, occupies two rows
-  },
+  { title: "School Principals", image: reason1, size: "lg:w-[60%]" },
+  { title: "Teachers", image: reason1, size: "lg:w-[35%]" },
+  { title: "Parents", image: reason1, size: "lg:w-[35%]" },
+  { title: "Students", image: reason1, size: "lg:w-[60%]" },
 ];
 
 export default function EducationPlatform() {
@@ -38,23 +22,25 @@ export default function EducationPlatform() {
         academic matters seamlessly, no more endless paperwork.
       </p>
 
-      {/* Image Grid */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Role Sections using Flexbox */}
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
         {roles.map((role, index) => (
           <div
             key={index}
-            className={`relative group overflow-hidden rounded-lg ${role.size || ""}`}
+            className={`relative group overflow-hidden rounded-xl w-full md:w-[48%] ${role.size}`}
           >
+            {/* Image */}
             <Image
               src={role.image}
               alt={role.title}
               width={600}
               height={400}
-              className="w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
             />
+            
             {/* Overlay */}
-            <div >
-              <h3 className="text-white text-xl font-semibold">{role.title}</h3>
+            <div className="absolute inset-0  flex items-center justify-center">
+              <h3 className="text-white text-lg font-semibold">{role.title}</h3>
             </div>
           </div>
         ))}
