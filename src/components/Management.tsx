@@ -1,9 +1,6 @@
 "use client";
-
 import Image from "next/image";
-import { FaPlay } from "react-icons/fa";
 import { HiBriefcase } from "react-icons/hi";
-import pro from "@/asserts/Product Info Card.png";
 import { CiPlay1 } from "react-icons/ci";
 
 export default function ManagementSection() {
