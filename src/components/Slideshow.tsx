@@ -6,40 +6,42 @@ import reason from "@/asserts/reason 2.png"
 const roles = [
   {
     title: "School Principals",
-    image:reason, // Replace with actual path
-    size: "md:col-span-1 md:col-start-2 md:row-span-2", // Standard size
+    image: "/reason1.png", // Replace with actual path
+    size: "md:col-span-2 ", // Standard size
   },
   {
     title: "Teachers",
-    image: reason,
+    image: "/reason2.png",
     size: "md:col-span-1", // Standard size
   },
   {
     title: "Parents",
-    image: reason,
-    size: "md:col-span-1", // Standard size
+    image: "/reason3.png",
+    size: "", // Standard size
   },
   {
     title: "Students",
-    image: reason,
-    size: "md:col-span-1 md:col-start-2 md:row-span-2", // Larger width, occupies two rows
+    image: "/reason4.png",
+    size: "md:col-span-2 ", // Larger width, occupies two rows
   },
 ];
 
 export default function EducationPlatform() {
   return (
-    <div className="w-full max-w-[971px] mx-auto text-center px-6 py-12">
+    <div className="w-full max-w-[971px] mx-auto text-center px-6 py-12 mt-10 ">
       {/* Heading */}
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        A Platform Built for Everyone in Education
-      </h2>
-      <p className="mt-2 text-lg text-gray-500 max-w-2xl mx-auto">
-        Talim helps administrators, teachers, parents, and students handle
-        academic matters seamlessly, no more endless paperwork.
-      </p>
+      <div className="max-w-[367px] sm:max-w-[845px]">
+        <h2 className="text-[35px] sm:text-[40px] font-medium text-[#2A2A2A] leading-[116.7%]">
+          A Platform Built for Everyone in Education
+        </h2>
+        <p className="mt-2 text-lg text-[#757575] sm:text-[#9E9E9E] max-w-[619px] mx-auto leading-[124.7%]">
+          Talim helps administrators, teachers, parents, and students handle
+          academic matters seamlessly, no more endless paperwork.
+        </p>
+      </div>
 
       {/* Image Grid */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         {roles.map((role, index) => (
           <div
             key={index}
