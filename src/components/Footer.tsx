@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="py-12 px-3 md:px-10 xl:px-24 flex gap-4 ">
+    <footer className="py-12 px-3 md:px-10 flex gap-4">
       <div className=" flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full xl:h-[380px]">
         {/* Left Section */}
         <div className="bg-[#0066CC] text-white p-6 md:p-10 xl:p-15 rounded-xl md:w-[495px] xl:w-2/5 h-full">
@@ -89,7 +89,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div className="col-start-2 row-start-3 sm:row-start-3 sm:col-start-3 flex items-end">
+          <div className="col-start-2 row-start-3 sm:row-start-3 sm:col-start-3 flex items-end justify-end">
             {" "}
             <p className="">© 2025 TALIM</p>
           </div>
