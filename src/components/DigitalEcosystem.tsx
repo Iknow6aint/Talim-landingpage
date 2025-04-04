@@ -4,16 +4,19 @@ import Image from "next/image";
 export default function DigitalEcosystem() {
   return (
     <div
-      className="relative w-full text-white py-20 sm:pl-10 lg:px-20 mt-10"
-      style={{ backgroundImage: "url('/core.png')",  backgroundSize: "cover",
+      className="relative w-full text-white py-20 px-3 sm:pl-10 lg:px-20 mt-10"
+      style={{
+        backgroundImage: "url('/core.png')",
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",  }}
+        backgroundPosition: "center",
+      }}
     >
       {/* Content Wrapper */}
       <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 w-full ">
         {/* Left Side - Text */}
         <div className="lg:max-w-[450px] xl:max-w-[572px] md:max-w-[300px] text-center sm:text-left">
-          <h2 className="text-4xl md:text-5xl font-medium ">
+          <h2 className="text-[35px] sm:text-[40px] font-medium ">
             Get Early Access to Africa’s Digital Academic Ecosystem
           </h2>
           <p className="mt-4 text-lg text-[#D0D0D0]">
