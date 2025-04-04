@@ -11,7 +11,7 @@ const Hero = () => {
           We help West African schools manage classes, follow curriculum, and
           keep parents updated.
         </p>
-        <button className="mt-6 text-[16px] bg-[#0066CC] text-white font-medium px-6 py-1 sm:py-3 rounded-2xl border border-[#FFFFFF]/10 flex gap-2 items-center shadow-[inset_0px_-4px_4px_rgba(251,251,251,0.25),inset_0px_4px_4px_rgba(255,255,255,0.30)]">
+        <button className="mt-6 text-[16px] bg-[#0066CC] text-white font-medium px-6 py-2 sm:py-3 rounded-2xl border border-[#FFFFFF]/10 flex gap-2 items-center shadow-[inset_0px_-4px_4px_rgba(251,251,251,0.25),inset_0px_4px_4px_rgba(255,255,255,0.30)]">
           Start free trial
           <HiOutlineGift strokeWidth={2} />
         </button>
