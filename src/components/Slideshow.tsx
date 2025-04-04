@@ -8,22 +8,22 @@ import reason4 from "@/asserts/reason 4.png";
 
 const roles = [
   {
-    title: "School Principals",
+    title: "",
     image: "/reason1.png", // Replace with actual path
     size: "md:col-span-2 ", // Standard size
   },
   {
-    title: "Teachers",
+    title: "",
     image: "/reason2.png",
     size: "md:col-span-1", // Standard size
   },
   {
-    title: "Parents",
+    title: "",
     image: "/reason3.png",
     size: "", // Standard size
   },
   {
-    title: "Students",
+    title: "",
     image: "/reason4.png",
     size: "md:col-span-2 ", // Larger width, occupies two rows
   },
