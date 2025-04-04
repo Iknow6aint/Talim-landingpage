@@ -1,30 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import reason1 from "@/asserts/reason 1.png";
-import reason2 from "@/asserts/reason 2.png";
-import reason3 from "@/asserts/reason 3.png";
-import reason4 from "@/asserts/reason 4.png";
+import reason1 from "@/asserts/image3.png";
+import reason2 from "@/asserts/image1.png";
+import reason3 from "@/asserts/image4.png";
+import reason4 from "@/asserts/image2.png";
 
 const roles = [
   {
-    title: "",
-    image: "/reason1.png", // Replace with actual path
+    title: "School Principals",
+    image: reason1, // Replace with actual path
     size: "md:col-span-2 ", // Standard size
   },
   {
-    title: "",
-    image: "/reason2.png",
+    title: "Teachers",
+    image: reason2,
     size: "md:col-span-1", // Standard size
   },
   {
-    title: "",
-    image: "/reason3.png",
+    title: "Parents",
+    image: reason3,
     size: "", // Standard size
   },
   {
-    title: "",
-    image: "/reason4.png",
+    title: "Students",
+    image: reason4,
     size: "md:col-span-2 ", // Larger width, occupies two rows
   },
 ];
