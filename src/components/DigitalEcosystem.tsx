@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import hero from "@/asserts/africa.png";
 import user1 from "@/asserts/user1.jpeg";
@@ -17,46 +16,59 @@ import user12 from "@/asserts/user12.jpeg";
 
 export default function DigitalEcosystem() {
   return (
-    <div className="relative w-full text-white py-20 px-6 md:px-16">
-      {/* Background Image */}
-      <div className="absolute inset-0 animate-zoom">
-        <Image
-          src={hero}
-          alt="University Background"
-          layout="fill"
-          objectFit="cover"
-          className="w-full h-full"
-        />
-      </div>
-      <div className="absolute inset-0 bg-[#0066CC]/70" />
-
+    <div
+      className="relative w-full text-white py-20 px-3 sm:pl-10 lg:px-20 mt-10"
+      style={{
+        backgroundImage: "url('/core.png')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    >
       {/* Content Wrapper */}
-      <div className="relative flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
+      <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 w-full ">
         {/* Left Side - Text */}
-        <div className="max-w-lg">
-          <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
-            Get Early Access to Africa’s <br />
-            Digital Academic Ecosystem
+        <div className="lg:max-w-[450px] xl:max-w-[572px] md:max-w-[300px] text-center sm:text-left">
+          <h2 className="text-[35px] sm:text-[40px] font-medium ">
+            Get Early Access to Africa’s Digital Academic Ecosystem
           </h2>
-          <p className="mt-4 text-lg text-gray-200 leading-relaxed">
-            Join West African schools using Talim to manage classes, connect 
+          <p className="mt-4 text-lg text-[#D0D0D0]">
+            Join West African schools using Talim to manage classes, connect
             with parents, and teach local curricula in their everyday life.
           </p>
         </div>
 
-        {/* Right Side - Glowing Circle with Smaller Images */}
-        <div className="relative mt-12 md:mt-0 w-[450px] h-[450px] flex items-center justify-center">
+        {/* Right Side - Glowing Circle with Images */}
+        <div className="relative mt-12 md:mt-0 w-[320px] h-[320px] lg:w-[450px] lg:h-[450px] flex items-center justify-center">
           {/* Glowing Circle */}
-          <div className="absolute w-full h-full rounded-full border-[8px] border-white/50 shadow-[0px_0px_30px_rgba(255,255,255,0.5)]" />
-
-          {/* Profile Images */}
-          <div className="grid grid-cols-4 gap-4 relative">
+          <div className="absolute w-full h-full rounded-full border-[2px] bg-[#0066CC] border-white shadow-[0px_0px_30px_rgba(255,255,255,0.5)]" />
+          {/* Small Profile Images */}
+          <div className="grid grid-cols-4 gap-2">
             {[
-              user1, user2, user3, user4, user5, user6, user7, user8,
-              user9, user10, user11, user12,
+              "/pic1.png",
+              "/pic2.png",
+              "/pic3.png",
+              "/pic4.png",
+              "/pic5.png",
+              "/pic6.png",
+              "/pic7.png",
+              "/pic8.png",
+              "/pic9.png",
+              "/pic10.png",
+              "/pic11.png",
+              "/pic12.png",
             ].map((img, idx) => (
-              <div key={idx} className="w-20 h-20 rounded-full overflow-hidden border-2 border-white">
-                <Image src={img} alt="User" width={80} height={80} className="object-cover w-full h-full" />
+              <div
+                key={idx}
+                className="w-[50px] h-[50px] sm:w-[65px] z-50 sm:h-[65px] rounded-full flex items-center justify-center border-[1.5px]  border-white"
+              >
+                <Image
+                  src={img}
+                  alt="User"
+                  width={65}
+                  height={65}
+                  className="object-cover rounded-full"
+                />
               </div>
             ))}
           </div>
