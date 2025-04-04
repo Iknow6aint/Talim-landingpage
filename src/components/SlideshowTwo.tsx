@@ -15,10 +15,10 @@ const images = [
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className="flex flex-col sm:flex-row sm:max-h-[700px] overflow-hidden bg-[#0066CC]">
+    <section className="flex flex-col sm:flex-row max-h-[830px] md:max-h-[430px] lg:max-h-[580px] xl:max-h-[700px] overflow-hidden bg-[#0066CC]">
       {/* Left Side: Text Content */}
       <div className="sm:w-1/2 bg-[#0066CC] flex flex-col justify-center text-center sm:text-left px-12 text-white">
-        <div className="max-w-[330px] sm:max-w-[488px] sm:ml-10 py-20 sm:py-0">
+        <div className="max-w-[330px] sm:max-w-[488px] sm:ml-10 py-20 sm:py-0 flex flex-col items-center sm:items-start">
           <h1 className="text-3xl md:text-4xl font-medium">
             A Platform Built for Everyone in Education
           </h1>
