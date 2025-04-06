@@ -10,9 +10,9 @@ import Image from "next/image"; // Import next/image for optimized images
 
 // Import images
 import talim1 from "../../public/talim1.png";
-import talim2 from"../../public/talim1.png";
-import talim3 from "../../public/talim1.png";
-import talim4 from "../../public/talim1.png";
+import talim2 from"../../public/talim2.png";
+import talim3 from "../../public/talim3.png";
+import talim4 from "../../public/talim4.png";
 
 const slides = [
   {
