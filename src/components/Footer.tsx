@@ -78,7 +78,7 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <div className=" col-span-1 row-start-3 sm:row-start-auto mt-10 w-full flex flex-col md:flex-row sm:col-span-3 justify-between items-center text-sm text-[#514A4A]">
+          <div className=" col-span-1 row-start-3 sm:row-start-auto mt-10 w-full flex flex-col md:flex-row sm:col-span-3 justify-between items-start sm:items-center text-sm text-[#514A4A]">
             <div className="flex flex-col sm:flex-row gap-3 items-center font-semibold">
               <a href="#" className="hover:underline">
                 Privacy Policy
