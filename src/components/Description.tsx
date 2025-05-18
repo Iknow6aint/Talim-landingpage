@@ -5,7 +5,7 @@ export default function Description() {
     <div className="w-full max-w-[856px] mx-auto text-center py-12 mt-10 ">
       {/* Heading */}
       <div className="max-w-[367px] sm:max-w-[845px]">
-        <h1 className="text-[35px] sm:text-[40px] font-semibold text-[#2A2A2A] leading-[116.7%]">
+        <h1 className="text-[35px] sm:text-[40px] font-semibold text-[#1A1A1A] leading-[116.7%]">
           Everything Schools, Teachers, Parents, and Students Need
         </h1>
         <p className="mt-10 text-[18px] text-[#767676] max-w-[650px] mx-auto leading-[124.7%]">
