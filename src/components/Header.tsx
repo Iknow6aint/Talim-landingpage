@@ -19,12 +19,11 @@ const Header = () => {
       </div>
 
       {/* CTA Button */}
-      <div className="flex  gap-2">
-        <button className="bg-black text-white px-4 py-3  border border-white rounded-full flex items-center gap-2 ">
-          Get Started
-          <ArrowRight />
-        </button>
-      </div>
+
+      <button className="bg-black text-white px-4 py-3  border border-white rounded-full flex items-center gap-2 ">
+        Get Started
+        <ArrowRight />
+      </button>
     </header>
   );
 };
