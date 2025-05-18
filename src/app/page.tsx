@@ -9,10 +9,9 @@ import Slideshow from "@/components/Slideshow";
 import SlideshowTwo from "@/components/SlideshowTwo";
 import FaqSection from "@/components/FaqSection";
 
-
 export default function Home() {
   return (
-    <main className="bg-[#FAFBFC] space-y-2">
+    <main className="space-y-2">
       <Header />
       <Hero />
       <Slideshow />
