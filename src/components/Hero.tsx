@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className=" flex flex-col items-center justify-center text-center  mt-20 mx-auto">
+    <section className=" flex flex-col items-center justify-center text-center  mt-20 mx-auto ">
       <div className="flex flex-col items-center gap-8 max-w-[1086px]">
         <h1 className="text-[35px] md:text-[50px] font-semibold text-center leading-[110%] tracking-[0.8px]">
           The Smarter Way to Manage Education
@@ -23,6 +23,7 @@ const Hero = () => {
         alt="School and students"
         width={2000}
         height={778}
+        className=""
       />
     </section>
   );
