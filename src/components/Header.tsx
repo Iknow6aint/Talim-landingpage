@@ -1,5 +1,3 @@
-import { CiPlay1 } from "react-icons/ci";
-import { HiOutlineGift } from "react-icons/hi2";
 import Image from "next/image";
 import { Outfit } from "next/font/google";
 import { ArrowRight } from "./Icons";
