@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Talim Landing Page",
   description: "Bringing Africa’s Education Online",
+  icons: {
+    icon: "/talim.svg",
+  },
 };
 
 export default function RootLayout({
@@ -18,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased bg-gray-100`}>
-        <div >{children}</div> {/* ✅ Enforce max-width */}
+        <div>{children}</div> {/* ✅ Enforce max-width */}
       </body>
     </html>
   );

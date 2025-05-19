@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  background-color: white;
+}
+
 /* Global container for all components */
 .container {
   max-width: 1200px;
