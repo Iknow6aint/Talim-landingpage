@@ -1,9 +1,11 @@
 # Talim Multi-Portal Deployment Guide
 
 ## Overview
+
 This guide helps you deploy the Talim multi-portal system with proper subdomain configuration on Vercel.
 
 ## Domain Structure
+
 - **Main Landing Page**: `www.mytalim.com` (this project)
 - **Student Portal**: `students.mytalim.com`
 - **Teacher Portal**: `teachers.mytalim.com`
@@ -15,6 +17,7 @@ This guide helps you deploy the Talim multi-portal system with proper subdomain 
 ### 1. Deploy Each Application Separately
 
 #### Landing Page (this project)
+
 ```bash
 # Deploy the landing page
 cd Talim-landingpage
@@ -22,6 +25,7 @@ vercel --prod
 ```
 
 #### Parent Portal
+
 ```bash
 # Deploy the parent portal
 cd talim-parents
@@ -29,6 +33,7 @@ vercel --prod
 ```
 
 #### School Admin Portal
+
 ```bash
 # Deploy the school admin portal
 cd Talim-Sch-Admin
@@ -44,19 +49,24 @@ For each deployed project in Vercel:
 3. Add the appropriate custom domain:
 
 #### Landing Page Project
+
 - Add domain: `mytalim.com`
 - Add domain: `www.mytalim.com`
 
 #### Parent Portal Project
+
 - Add domain: `parents.mytalim.com`
 
 #### School Admin Portal Project
+
 - Add domain: `school.mytalim.com`
 
 #### Future Student Portal Project
+
 - Add domain: `students.mytalim.com`
 
 #### Future Teacher Portal Project
+
 - Add domain: `teachers.mytalim.com`
 
 ### 3. DNS Configuration
@@ -79,12 +89,14 @@ AAAA    @           2606:4700:90:0:f22e:fbec:5bed:a9b9   Auto
 Set these environment variables in each Vercel project:
 
 #### All Projects
+
 ```
 NODE_ENV=production
 NEXT_PUBLIC_API_URL=https://api.mytalim.com
 ```
 
 #### Landing Page Specific
+
 ```
 NEXT_PUBLIC_STUDENT_PORTAL_URL=https://students.mytalim.com
 NEXT_PUBLIC_TEACHER_PORTAL_URL=https://teachers.mytalim.com
@@ -100,7 +112,9 @@ If you want to use environment variables instead of hardcoded URLs, update the `
 const portals: Portal[] = [
   {
     name: "Student",
-    url: process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL || "https://students.mytalim.com",
+    url:
+      process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL ||
+      "https://students.mytalim.com",
     description: "Access your courses, assignments, and progress",
     icon: "🎓",
   },
@@ -119,6 +133,7 @@ const portals: Portal[] = [
 ### 7. Monitoring and Analytics
 
 Consider adding:
+
 - **Vercel Analytics** for performance monitoring
 - **Google Analytics** for user tracking
 - **Error monitoring** (e.g., Sentry)
@@ -126,6 +141,7 @@ Consider adding:
 ### 8. Continuous Deployment
 
 Set up GitHub integration for automatic deployments:
+
 1. Connect each repository to its respective Vercel project
 2. Configure automatic deployments on push to main/master branch
 3. Set up preview deployments for pull requests
@@ -140,7 +156,9 @@ Set up GitHub integration for automatic deployments:
 4. **404 errors on refresh**: Make sure each Next.js app has proper routing configuration
 
 ### Support
+
 For additional help:
+
 - Vercel Documentation: https://vercel.com/docs
 - Domain Configuration: https://vercel.com/docs/custom-domains
 - Contact: support@mytalim.com

@@ -1,0 +1,21 @@
+{
+  "name": "Talim - Smart Learning Management System",
+  "short_name": "Talim LMS",
+  "description": "Transform your educational institution with Talim's comprehensive learning management system",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/talim.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}

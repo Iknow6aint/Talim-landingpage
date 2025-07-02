@@ -6,12 +6,10 @@ export default function Description() {
       {/* Heading */}
       <div className="max-w-[367px] sm:max-w-[845px]">
         <h1 className="text-[35px] sm:text-[40px] font-semibold text-[#1A1A1A] leading-[116.7%]">
-          Everything Schools, Teachers, Parents, and Students Need
+          Complete Education Management <span className="text-blue-600">Made Simple</span>
         </h1>
         <p className="mt-10 text-[18px] text-[#767676] max-w-[650px] mx-auto leading-[124.7%]">
-          Talim brings your entire academic community together with powerful
-          tools for management, communication, and learning — all in one secure
-          platform.
+          Talim delivers a comprehensive suite of tools that streamline school operations, enhance communication, and drive educational excellence. Transform how your institution manages learning with our proven, data-driven platform.
         </p>
       </div>
 
@@ -20,16 +18,15 @@ export default function Description() {
         <div className="bg-[#E9F5FF] px-4 pt-4 rounded-2xl flex flex-col border-[#F4F4F4]">
           <div className="mb-2">
             <button className="bg-white border border-[#229EFF] text-[#229EFF] px-2 py-1 rounded-full flex items-center gap-2 ">
-              Manage Students
+              Student Analytics
             </button>
           </div>
           <div className="max-w-[309px]">
             <h2 className="font-medium text-[19px] ">
-              All Student Information in One Place
+              Comprehensive Student Data Management
             </h2>
             <p className="text-[15px] text-[#767676]">
-              Track attendance, grades, and student progress easily with a smart
-              dashboard.
+              Track attendance, grades, performance analytics, and behavioral insights with advanced reporting and predictive analytics for early intervention.
             </p>
           </div>
           <Image
@@ -43,16 +40,15 @@ export default function Description() {
         <div className="bg-[#E5F9EE] px-4 pt-4 rounded-2xl flex flex-col border-[#F4F4F4]">
           <div className="mb-2">
             <button className="bg-white border border-[#00C159] text-[#00C159]  px-2 py-1 rounded-full flex items-center gap-2 ">
-              Instant Updates for Parents and Teachers
+              Real-Time Communication
             </button>
           </div>
           <div className="max-w-[309px]">
             <h2 className="font-medium text-[19px] ">
-              Instant Updates for Parents and Teachers
+              Seamless Multi-Stakeholder Communication
             </h2>
             <p className="text-[15px] text-[#767676]">
-              Strengthen relationships between school and home with real-time
-              messages and updates.
+              Enable transparent, instant communication between teachers, parents, students, and administrators with automated notifications and progress updates.
             </p>
           </div>
           <Image
@@ -66,16 +62,15 @@ export default function Description() {
         <div className="bg-[#FFF8E5] px-4 pt-4 rounded-2xl flex flex-col border border-[#F4F4F4]">
           <div className="mb-2">
             <button className="bg-white border border-[#FFBE00] text-[#FFBE00]  px-2 py-1 rounded-full flex items-center gap-2 ">
-              Manage Students
+              Content Management
             </button>
           </div>
           <div className="max-w-[309px]">
             <h2 className="font-medium text-[19px] ">
-              Upload and Share Learning Materials Easily
+              Advanced Learning Resource Management
             </h2>
             <p className="text-[15px] text-[#767676]">
-              Distribute assignments, notes, and course materials to students
-              with a few clicks.
+              Centralize curriculum materials, assignments, and digital resources with version control, accessibility compliance, and multimedia support.
             </p>
           </div>
           <Image
@@ -89,16 +84,15 @@ export default function Description() {
         <div className="bg-[#EBFBFC] px-4 pt-4 rounded-2xl flex flex-col border border-[#F4F4F4]">
           <div className="mb-2">
             <button className="bg-white border border-[#39D4DF] text-[#39D4DF]  px-2 py-1 rounded-full flex items-center gap-2 ">
-              Stay Secure
+              Enterprise Security
             </button>
           </div>
           <div className="max-w-[309px]">
             <h2 className="font-medium text-[19px] ">
-              Safe and Private for Every User
+              Bank-Level Security & Compliance
             </h2>
             <p className="text-[15px] text-[#767676]">
-              Protect sensitive student and school data with enterprise-grade
-              security.
+              Protect sensitive educational data with military-grade encryption, GDPR compliance, role-based access control, and comprehensive audit trails.
             </p>
           </div>
           <Image
