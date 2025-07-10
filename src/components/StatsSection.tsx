@@ -116,7 +116,7 @@ const StatsSection = () => {
             </div>
             <div className="text-left">
               <p className="font-semibold text-gray-900">Dr. Sarah Mitchell</p>
-              <p className="text-gray-600">Principal, International Academy</p>
+              <p className="text-gray-600">Principal, Western International Academy</p>
             </div>
           </div>
         </motion.div>
