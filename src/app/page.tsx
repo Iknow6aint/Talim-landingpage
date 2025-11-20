@@ -4,18 +4,24 @@ import Hero from "@/components/Hero";
 import FaqSection from "@/components/FaqSection";
 import Description from "@/components/Description";
 import Reason from "@/components/Reason";
-import StatsSection from "@/components/StatsSection";
 import CTASection from "@/components/CTASection";
+import TrustBadgeSection from "@/components/Partners";
+import WhySchoolsChoose from "@/components/WhySchoolsChoose";
+import WhySchoolsNeedTalim from "@/components/NeedForTalim";
+import TrustedBySchools from "@/components/TrustedBySchools";
+import TalimVideoSection from "@/components/TalimVideoSection";
+import BranchingDiagram from "@/components/Ani";
 
 export default function Home() {
   return (
-    <main className="space-y-2 px-4 md:px-0">
+    <main className="space-y-2 px-4 bg-[#FBFCFE] md:px-0">
       <Header />
       <Hero />
-      <StatsSection />
-      <Description />
-      <Reason />
-      <CTASection />
+      <TrustBadgeSection />
+      <WhySchoolsChoose />
+      <WhySchoolsNeedTalim />
+      <TrustedBySchools />
+      <TalimVideoSection />
       <FaqSection />
       <Footer />
     </main>
