@@ -12,6 +12,7 @@ import TrustedBySchools from "@/components/TrustedBySchools";
 import TalimVideoSection from "@/components/TalimVideoSection";
 import BranchingDiagram from "@/components/Ani";
 import MobileAppSection from "@/components/MobileAppSection";
+import UpcomingEventSection from "@/components/UpcomingEventSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <WhySchoolsNeedTalim />
       <TrustedBySchools />
       <TalimVideoSection />
+      <UpcomingEventSection />
       <MobileAppSection />
       <FaqSection />
       <Footer />
