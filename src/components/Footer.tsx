@@ -113,10 +113,10 @@ const Footer = () => {
           <div className={`flex items-center justify-center gap-2 mb-8 ${isVisible ? 'animate-fadeInUp delay-300' : 'opacity-0'}`}>
             <Mail className="w-5 h-5 text-[#003366]" />
             <a 
-              href="mailto:mytalim@gmail.com" 
+              href="mailto:support@mytalim.com" 
               className="text-[#003366] hover:text-[#81B8F0] transition-colors font-medium"
             >
-              mytalim@gmail.com
+              support@mytalim.com
             </a>
           </div>
         </div>
