@@ -121,120 +121,130 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Contact Information Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 ${isVisible ? 'animate-fadeInUp delay-400' : 'opacity-0'}`}>
-          {/* Main Office - USA */}
-          <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-[#EEEEEE]">
-            <div className="flex items-start gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-[#003366] flex-shrink-0 mt-1" />
-              <div>
-                <h3 className={`${outfit.className} font-bold text-[#003366] mb-2`}>Main Office</h3>
-                <p className="text-[#767676] text-sm leading-relaxed">
-                  1235 East BLVD<br />
-                  Charlotte, NC 28278<br />
-                  USA
-                </p>
+        {/* Main Office - Featured */}
+        <div className={`max-w-2xl mx-auto mb-10 ${isVisible ? 'animate-fadeInUp delay-400' : 'opacity-0'}`}>
+          <div className="bg-gradient-to-br from-[#003366] to-[#004d99] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all">
+            <div className="text-center mb-6">
+              <h3 className={`${outfit.className} font-bold text-white text-2xl mb-2`}>Main Office</h3>
+              <div className="w-16 h-1 bg-[#81B8F0] mx-auto rounded-full"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6 text-white">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-6 h-6 text-[#81B8F0] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-[#E8F4FD] font-medium mb-1">Address</p>
+                  <p className="text-white/90 leading-relaxed">
+                    1235 East BLVD<br />
+                    Charlotte, NC 28278<br />
+                    USA
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <Phone className="w-6 h-6 text-[#81B8F0] flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-[#E8F4FD] font-medium mb-1">Phone</p>
+                  <a href="tel:+18887780218" className="text-white/90 hover:text-white transition-colors block">
+                    +1 888 778-0218
+                  </a>
+                  <a href="tel:+17048441804" className="text-white/90 hover:text-white transition-colors block">
+                    +1 704-844-1804
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="flex items-start gap-3 mt-3">
-              <Phone className="w-4 h-4 text-[#003366] flex-shrink-0 mt-1" />
-              <div className="text-sm">
-                <a href="tel:+18887780218" className="text-[#003366] hover:text-[#81B8F0] transition-colors block">
-                  +1 888 778-0218
+          </div>
+        </div>
+
+        {/* Branch Offices */}
+        <div className={`mb-8 ${isVisible ? 'animate-fadeInUp delay-500' : 'opacity-0'}`}>
+          <h4 className={`${outfit.className} text-center text-[#003366] text-lg font-semibold mb-6`}>
+            Our Branch Offices
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Abuja Branch */}
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-[#EEEEEE] hover:border-[#81B8F0]">
+              <div className="flex items-center gap-2 mb-4">
+                <MapPin className="w-5 h-5 text-[#003366]" />
+                <h3 className={`${outfit.className} font-bold text-[#003366]`}>Abuja</h3>
+              </div>
+              <p className="text-[#767676] text-sm leading-relaxed mb-3">
+                D32, Same Global Estate<br />
+                Lokogoma FCT<br />
+                Abuja, Nigeria
+              </p>
+              <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
+                <Phone className="w-4 h-4 text-[#003366]" />
+                <a href="tel:+2349161684111" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm font-medium">
+                  +234 916 168 4111
                 </a>
-                <a href="tel:+17048441804" className="text-[#003366] hover:text-[#81B8F0] transition-colors block">
-                  +1 704-844-1804
+              </div>
+            </div>
+
+            {/* Port Harcourt Branch */}
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-[#EEEEEE] hover:border-[#81B8F0]">
+              <div className="flex items-center gap-2 mb-4">
+                <MapPin className="w-5 h-5 text-[#003366]" />
+                <h3 className={`${outfit.className} font-bold text-[#003366]`}>Port Harcourt</h3>
+              </div>
+              <p className="text-[#767676] text-sm leading-relaxed mb-3">
+                No 5 Glitter Avenue<br />
+                East-West Road, Nkpolu<br />
+                Port Harcourt, Nigeria
+              </p>
+              <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
+                <Phone className="w-4 h-4 text-[#003366]" />
+                <a href="tel:+2349161684111" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm font-medium">
+                  +234 916 168 4111
                 </a>
               </div>
             </div>
-          </div>
 
-          {/* Abuja Branch */}
-          <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-[#EEEEEE]">
-            <div className="flex items-start gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-[#003366] flex-shrink-0 mt-1" />
-              <div>
-                <h3 className={`${outfit.className} font-bold text-[#003366] mb-2`}>Abuja Branch</h3>
-                <p className="text-[#767676] text-sm leading-relaxed">
-                  D32, Same Global Estate<br />
-                  Lokogoma FCT<br />
-                  Abuja, Nigeria
-                </p>
+            {/* Keffi Branch */}
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-[#EEEEEE] hover:border-[#81B8F0]">
+              <div className="flex items-center gap-2 mb-4">
+                <MapPin className="w-5 h-5 text-[#003366]" />
+                <h3 className={`${outfit.className} font-bold text-[#003366]`}>Keffi</h3>
               </div>
-            </div>
-            <div className="flex items-start gap-3 mt-3">
-              <Phone className="w-4 h-4 text-[#003366] flex-shrink-0 mt-1" />
-              <a href="tel:+2349161684111" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm">
-                +234 916 168 4111
-              </a>
-            </div>
-          </div>
-
-          {/* Port Harcourt Branch */}
-          <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-[#EEEEEE]">
-            <div className="flex items-start gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-[#003366] flex-shrink-0 mt-1" />
-              <div>
-                <h3 className={`${outfit.className} font-bold text-[#003366] mb-2`}>Port Harcourt Branch</h3>
-                <p className="text-[#767676] text-sm leading-relaxed">
-                  No 5 Glitter Avenue<br />
-                  East-West Road, Nkpolu<br />
-                  Port Harcourt, Nigeria
-                </p>
+              <p className="text-[#767676] text-sm leading-relaxed mb-3">
+                7A, Off Walida Estate<br />
+                Angwan Jarme<br />
+                Keffi, Nasarawa State, Nigeria
+              </p>
+              <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
+                <Phone className="w-4 h-4 text-[#003366]" />
+                <a href="tel:+2349075783540" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm font-medium">
+                  +234 907 578 3540
+                </a>
               </div>
-            </div>
-            <div className="flex items-start gap-3 mt-3">
-              <Phone className="w-4 h-4 text-[#003366] flex-shrink-0 mt-1" />
-              <a href="tel:+2349161684111" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm">
-                +234 916 168 4111
-              </a>
-            </div>
-          </div>
-
-          {/* Keffi Branch */}
-          <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-[#EEEEEE]">
-            <div className="flex items-start gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-[#003366] flex-shrink-0 mt-1" />
-              <div>
-                <h3 className={`${outfit.className} font-bold text-[#003366] mb-2`}>Keffi Branch</h3>
-                <p className="text-[#767676] text-sm leading-relaxed">
-                  7A, Off Walida Estate<br />
-                  Angwan Jarme<br />
-                  Keffi, Nasarawa State, Nigeria
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 mt-3">
-              <Phone className="w-4 h-4 text-[#003366] flex-shrink-0 mt-1" />
-              <a href="tel:+2349075783540" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm">
-                +234 907 578 3540
-              </a>
             </div>
           </div>
         </div>
 
         {/* Social Icons - Centered */}
-        <div className={`flex justify-center gap-4 mb-8 ${isVisible ? 'animate-fadeIn delay-500' : 'opacity-0'}`}>
+        <div className={`flex justify-center gap-4 mb-12 ${isVisible ? 'animate-fadeIn delay-500' : 'opacity-0'}`}>
           <a
             href="#"
-            className="border border-[#EEEEEE] p-2 rounded-full flex items-center cursor-pointer hover:bg-gray-100 hover:border-[#003366] transition-all hover:scale-110"
+            className="bg-white border border-[#EEEEEE] p-3 rounded-full flex items-center cursor-pointer hover:bg-[#003366] hover:border-[#003366] transition-all hover:scale-110 group"
             aria-label="Instagram"
           >
-            <Instagram className="w-5 h-5" />
+            <Instagram className="w-5 h-5 text-[#003366] group-hover:text-white transition-colors" />
           </a>
           <a
             href="#"
-            className="border border-[#EEEEEE] p-2 rounded-full flex items-center cursor-pointer hover:bg-gray-100 hover:border-[#003366] transition-all hover:scale-110"
+            className="bg-white border border-[#EEEEEE] p-3 rounded-full flex items-center cursor-pointer hover:bg-[#003366] hover:border-[#003366] transition-all hover:scale-110 group"
             aria-label="Twitter"
           >
-            <Twitter className="w-5 h-5" />
+            <Twitter className="w-5 h-5 text-[#003366] group-hover:text-white transition-colors" />
           </a>
           <a
             href="#"
-            className="border border-[#EEEEEE] p-2 rounded-full flex items-center cursor-pointer hover:bg-gray-100 hover:border-[#003366] transition-all hover:scale-110"
+            className="bg-white border border-[#EEEEEE] p-3 rounded-full flex items-center cursor-pointer hover:bg-[#003366] hover:border-[#003366] transition-all hover:scale-110 group"
             aria-label="LinkedIn"
           >
-            <Linkedin className="w-5 h-5" />
+            <Linkedin className="w-5 h-5 text-[#003366] group-hover:text-white transition-colors" />
           </a>
         </div>
       </div>
