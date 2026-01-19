@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import PortalModal from "./PortalModal";
+import dashboardImg from "../assets/dashboard Parent.png";
+import resultsImg from "../assets/results.png";
+import chatsImg from "../assets/chats.png";
 
 
 
@@ -13,6 +16,74 @@ const Hero = () => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Carousel images - using assets from src/assets/
+  const carouselImages = [
+    { src: dashboardImg, alt: 'Dashboard overview' },
+    { src: resultsImg, alt: 'Results page' },
+    { src: chatsImg, alt: 'Messages' },
+  ];
+
+  function ScreenshotCarousel() {
+    const [index, setIndex] = useState(0);
+    const length = carouselImages.length;
+
+    useEffect(() => {
+      const id = setInterval(() => setIndex((i) => (i + 1) % length), 4000);
+      return () => clearInterval(id);
+    }, [length]);
+
+    return (
+      <div className="relative">
+        <div className="carousel-viewport">
+          <div className="carousel-track" style={{ transform: `translateX(-${index * 100}%)` }}>
+            {carouselImages.map((img, i) => (
+              <div key={i} className="carousel-slide">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={1000}
+                  height={600}
+                  className="object-cover w-full h-auto"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button
+          aria-label="Previous"
+          onClick={() => setIndex((index - 1 + length) % length)}
+          className="absolute left-3 top-1/2 -translate-y-1/2 carousel-button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M12.293 16.707a1 1 0 01-1.414 0L5.586 11.414a1 1 0 010-1.414l5.293-5.293a1 1 0 111.414 1.414L8.414 10l3.879 3.879a1 1 0 010 1.414z" clipRule="evenodd" />
+          </svg>
+        </button>
+
+        <button
+          aria-label="Next"
+          onClick={() => setIndex((index + 1) % length)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 carousel-button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 rotate-180" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M12.293 16.707a1 1 0 01-1.414 0L5.586 11.414a1 1 0 010-1.414l5.293-5.293a1 1 0 111.414 1.414L8.414 10l3.879 3.879a1 1 0 010 1.414z" clipRule="evenodd" />
+          </svg>
+        </button>
+
+        <div className="flex gap-2 justify-center mt-3">
+          {carouselImages.map((_, i) => (
+            <button
+              key={i}
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => setIndex(i)}
+              className={`carousel-dot ${i === index ? 'bg-[#003366]' : 'bg-gray-300'}`}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -71,6 +142,13 @@ const Hero = () => {
           animation-delay: 0.6s;
           opacity: 0;
         }
+
+        /* Carousel styles */
+        .carousel-viewport { overflow: hidden; border-radius: 12px; }
+        .carousel-track { display: flex; transition: transform 0.7s ease; }
+        .carousel-slide { flex: 0 0 100%; }
+        .carousel-dot { width: 10px; height: 10px; border-radius: 9999px; border: none; }
+        .carousel-button { background: rgba(255,255,255,0.9); border-radius: 9999px; padding: 6px; box-shadow: 0 6px 18px rgba(2,6,23,0.08); border: none; }
       `}</style>
 
       <section className="flex flex-col items-center justify-center text-center mt-20 mx-auto">
@@ -102,14 +180,14 @@ const Hero = () => {
             </button>
           </div>
         </div>
+
         <div className={`mt-20 ${isVisible ? 'animate-scaleIn delay-600' : 'opacity-0'}`}>
-          <Image
-            src="/School Dashboard.png"
-            alt="School and students"
-            width={1000}
-            height={778}
-            className="hover:scale-[1.02] transition-transform duration-500"
-          />
+          {/* Screenshot carousel: update /public/screens/* with your screenshots (dashboard.png, results.png, messages.png) */}
+          <div className="w-full max-w-[1000px] mx-auto">
+            {/* Inline carousel component */}
+            {/** Simple, dependency-free carousel with autoplay, arrows and dots **/}
+            <ScreenshotCarousel />
+          </div>
         </div>
       </section>
 
@@ -117,7 +195,8 @@ const Hero = () => {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
       />
-    </>
+
+      </>
   );
 };
 
