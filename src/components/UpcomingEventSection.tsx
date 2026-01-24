@@ -181,7 +181,7 @@ const UpcomingEventSection = () => {
               </div>
               <div>
                 <h3 className={`${outfit.className} font-bold text-[#003366] text-lg mb-1`}>Partners</h3>
-                <p className="text-[#767676] font-semibold">Ministry of Education</p>
+                
                 <p className="text-[#767676] text-sm">Leading EdTech Stakeholders</p>
               </div>
             </div>

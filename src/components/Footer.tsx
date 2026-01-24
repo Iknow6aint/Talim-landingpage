@@ -161,7 +161,7 @@ const Footer = () => {
         {/* Branch Offices */}
         <div className={`mb-8 ${isVisible ? 'animate-fadeInUp delay-500' : 'opacity-0'}`}>
           <h4 className={`${outfit.className} text-center text-[#003366] text-lg font-semibold mb-6`}>
-            Our Branch Offices
+            Our Contact  Numbers
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Abuja Branch */}
@@ -171,8 +171,6 @@ const Footer = () => {
                 <h3 className={`${outfit.className} font-bold text-[#003366]`}>Abuja</h3>
               </div>
               <p className="text-[#767676] text-sm leading-relaxed mb-3">
-                D32, Same Global Estate<br />
-                Lokogoma FCT<br />
                 Abuja, Nigeria
               </p>
               <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
@@ -190,8 +188,6 @@ const Footer = () => {
                 <h3 className={`${outfit.className} font-bold text-[#003366]`}>Port Harcourt</h3>
               </div>
               <p className="text-[#767676] text-sm leading-relaxed mb-3">
-                No 5 Glitter Avenue<br />
-                East-West Road, Nkpolu<br />
                 Port Harcourt, Nigeria
               </p>
               <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
@@ -209,8 +205,6 @@ const Footer = () => {
                 <h3 className={`${outfit.className} font-bold text-[#003366]`}>Keffi</h3>
               </div>
               <p className="text-[#767676] text-sm leading-relaxed mb-3">
-                7A, Off Walida Estate<br />
-                Angwan Jarme<br />
                 Keffi, Nasarawa State, Nigeria
               </p>
               <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
