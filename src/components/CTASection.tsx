@@ -1,129 +1,70 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { HiOutlinePhone, HiOutlineCalendar, HiOutlineUsers, HiOutlineShieldCheck } from "react-icons/hi2";
+import { ArrowRight, Calendar } from "lucide-react";
 import PortalModal from "./PortalModal";
 
-const CTASection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const benefits = [
-    {
-      icon: <HiOutlineUsers className="w-6 h-6" />,
-      title: "Easy Implementation",
-      description: "Get your school up and running in just 48 hours"
-    },
-    {
-      icon: <HiOutlineShieldCheck className="w-6 h-6" />,
-      title: "Data Security",
-      description: "Bank-level security with GDPR compliance"
-    },
-    {
-      icon: <HiOutlinePhone className="w-6 h-6" />,
-      title: "24/7 Support",
-      description: "Dedicated support team available around the clock"
-    }
-  ];
+export default function CTASection() {
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-br from-blue-700 to-blue-900 relative overflow-hidden" ref={ref}>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full -translate-x-48 -translate-y-48"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full translate-x-48 translate-y-48"></div>
-        </div>
-        
-        {/* Additional overlay for better text contrast */}
-        <div className="absolute inset-0 bg-blue-800/20"></div>
+      <section className="relative bg-[#050D1A] dot-grid py-28 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#0066CC] blur-[200px] opacity-12 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[#003366] blur-[160px] opacity-15 pointer-events-none" />
 
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <motion.div 
-            className="text-center mb-12"
+        <div className="section-container relative z-10 text-center">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            className="max-w-3xl mx-auto"
           >
-            <h2 className="text-[35px] md:text-[50px] font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Ready to Transform Your <br />
-              <span className="text-yellow-400 drop-shadow-md">Educational Institution?</span>
-            </h2>
-            <p className="text-xl text-blue-50 max-w-3xl mx-auto mb-8 leading-relaxed drop-shadow-md">
-              Join hundreds of schools worldwide that have revolutionized their education management with Talim. Experience the power of transparent, data-driven education today.
+            <p className="text-[11px] font-semibold text-[#0DCCB4] uppercase tracking-widest mb-6">
+              Get Started Today
             </p>
-          </motion.div>
 
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl p-6 text-center hover:bg-white transition-all duration-300 shadow-xl hover:shadow-2xl"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-              >
-                <div className="bg-blue-700 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-white shadow-lg">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-700 text-sm font-medium">
-                  {benefit.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+            <h2
+              className="text-5xl sm:text-[62px] font-bold text-white leading-[1.05] tracking-tight mb-6"
+              style={{ fontFamily: "var(--font-manrope)" }}
+            >
+              The Future of Education{" "}
+              <span className="gradient-text">Is Measurable.</span>
+            </h2>
 
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
-              <motion.button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-white text-blue-800 px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-blue-50 transition-all duration-300 shadow-xl hover:shadow-2xl group w-full sm:w-auto justify-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <p className="text-xl text-white/45 leading-relaxed mb-12 max-w-2xl mx-auto">
+              Join institutions across the world that are building smarter, more connected,
+              and more data-driven schools — starting today.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => setModalOpen(true)}
+                className="group flex items-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-[#003366] to-[#0066CC] hover:from-[#004480] hover:to-[#0077EE] shadow-[0_0_40px_rgba(0,102,204,0.45)] hover:shadow-[0_0_60px_rgba(0,102,204,0.6)] transition-all duration-200"
               >
-                <HiOutlineCalendar className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                Schedule a Demo
-              </motion.button>
-              
-              <motion.button
-                className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-800 transition-all duration-300 w-full sm:w-auto shadow-lg hover:shadow-xl"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                Start for Free
+                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+              </button>
+
+              <button
+                onClick={() => setModalOpen(true)}
+                className="flex items-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold text-white/70 hover:text-white border border-white/[0.12] hover:border-white/25 hover:bg-white/[0.04] transition-all duration-200"
               >
-                Call Sales Team
-              </motion.button>
+                <Calendar size={16} />
+                Book a Demo
+              </button>
             </div>
-            
-            <p className="text-blue-50 mt-6 text-sm font-medium drop-shadow-md">
-              Free 30-day trial • No credit card required • Setup in 48 hours
+
+            <p className="mt-8 text-sm text-white/25">
+              Free setup · No credit card required · Onboard in under 15 minutes
             </p>
           </motion.div>
         </div>
       </section>
 
-      <PortalModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-      />
+      <PortalModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
-};
-
-export default CTASection;
+}

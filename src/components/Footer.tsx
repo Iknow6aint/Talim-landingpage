@@ -1,261 +1,139 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { Outfit } from "next/font/google";
-import { Instagram, Linkedin, Twitter, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+const footerLinks = {
+  Platform: ["School Operations", "Academic Intelligence", "Communication", "Financial Tools", "Verified Records"],
+  Solutions: ["Primary Schools", "Secondary Schools", "Colleges & Universities", "Vocational Institutes", "School Networks"],
+  Company: ["About Talim", "Careers", "Press", "Blog", "Contact Us"],
+  Resources: ["Documentation", "API Reference", "Case Studies", "Help Center", "System Status"],
+};
 
-const Footer = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const footerRef = useRef(null);
+const offices = [
+  {
+    city: "Charlotte, NC",
+    country: "United States",
+    address: "1235 East BLVD, Charlotte, NC 28278",
+    phone: "+1 888 778-0218",
+    flag: "🇺🇸",
+    primary: true,
+  },
+  { city: "Abuja", country: "Nigeria", phone: "+234 916 168 4111", flag: "🇳🇬" },
+  { city: "Port Harcourt", country: "Nigeria", phone: "+234 916 168 4111", flag: "🇳🇬" },
+  { city: "Keffi, Nasarawa", country: "Nigeria", phone: "+234 907 578 3540", flag: "🇳🇬" },
+];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-
-    return () => {
-      if (footerRef.current) {
-        observer.unobserve(footerRef.current);
-      }
-    };
-  }, []);
-
+export default function Footer() {
   return (
-    <>
-      <style jsx global>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .animate-fadeInUp {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .delay-100 {
-          animation-delay: 0.1s;
-          opacity: 0;
-        }
-
-        .delay-200 {
-          animation-delay: 0.2s;
-          opacity: 0;
-        }
-
-        .delay-300 {
-          animation-delay: 0.3s;
-          opacity: 0;
-        }
-
-        .delay-400 {
-          animation-delay: 0.4s;
-          opacity: 0;
-        }
-
-        .delay-500 {
-          animation-delay: 0.5s;
-          opacity: 0;
-        }
-      `}</style>
-
-      <div ref={footerRef} className="max-w-7xl mx-auto py-0 mt-20 px-4">
-        {/* Logo and Tagline - Centered */}
-        <div className="text-center mb-12">
-          <div className={`flex items-center gap-2 justify-center ${isVisible ? 'animate-fadeInUp delay-100' : 'opacity-0'}`}>
-            <Image src="/talim.svg" alt="Logo" width={46.65} height={45} />
-            <p className={`${outfit.className} text-[24px]`}>Talim</p>
-          </div>
-          <p className={`text-[#767676] mt-4 mb-6 max-w-[426px] mx-auto ${isVisible ? 'animate-fadeInUp delay-200' : 'opacity-0'}`}>
-            Empowering schools, teachers, parents, and students worldwide to
-            connect, collaborate, and succeed effortlessly.
-          </p>
-
-          {/* Email Section */}
-          <div className={`flex items-center justify-center gap-2 mb-8 ${isVisible ? 'animate-fadeInUp delay-300' : 'opacity-0'}`}>
-            <Mail className="w-5 h-5 text-[#003366]" />
-            <a 
-              href="mailto:support@mytalim.com" 
-              className="text-[#003366] hover:text-[#81B8F0] transition-colors font-medium"
+    <footer className="bg-[#020810] text-white">
+      {/* Top section */}
+      <div className="section-container py-16 border-b border-white/[0.06]">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+          {/* Brand column */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#003366] to-[#0066CC] flex items-center justify-center">
+                <span className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-manrope)" }}>T</span>
+              </div>
+              <span className="font-bold text-white text-lg" style={{ fontFamily: "var(--font-manrope)" }}>mytalim</span>
+            </div>
+            <p className="text-[13px] text-white/35 leading-relaxed mb-5">
+              Education infrastructure for institutions that believe learning should be measurable, verifiable, and lifelong.
+            </p>
+            <a
+              href="mailto:support@mytalim.com"
+              className="flex items-center gap-2 text-[13px] text-white/40 hover:text-white/70 transition-colors"
             >
+              <Mail size={13} />
               support@mytalim.com
             </a>
           </div>
-        </div>
 
-        {/* Main Office - Featured */}
-        <div className={`max-w-2xl mx-auto mb-10 ${isVisible ? 'animate-fadeInUp delay-400' : 'opacity-0'}`}>
-          <div className="bg-gradient-to-br from-[#003366] to-[#004d99] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all">
-            <div className="text-center mb-6">
-              <h3 className={`${outfit.className} font-bold text-white text-2xl mb-2`}>Main Office</h3>
-              <div className="w-16 h-1 bg-[#81B8F0] mx-auto rounded-full"></div>
+          {/* Nav columns */}
+          {Object.entries(footerLinks).map(([group, links]) => (
+            <div key={group}>
+              <p className="text-[11px] font-semibold text-white/25 uppercase tracking-widest mb-4">{group}</p>
+              <ul className="space-y-2.5">
+                {links.map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-[13px] text-white/40 hover:text-white/75 transition-colors">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-6 text-white">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-6 h-6 text-[#81B8F0] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-[#E8F4FD] font-medium mb-1">Address</p>
-                  <p className="text-white/90 leading-relaxed">
-                    1235 East BLVD<br />
-                    Charlotte, NC 28278<br />
-                    USA
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <Phone className="w-6 h-6 text-[#81B8F0] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-[#E8F4FD] font-medium mb-1">Phone</p>
-                  <a href="tel:+18887780218" className="text-white/90 hover:text-white transition-colors block">
-                    +1 888 778-0218
-                  </a>
-                  <a href="tel:+17048441804" className="text-white/90 hover:text-white transition-colors block">
-                    +1 704-844-1804
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Branch Offices */}
-        <div className={`mb-8 ${isVisible ? 'animate-fadeInUp delay-500' : 'opacity-0'}`}>
-          <h4 className={`${outfit.className} text-center text-[#003366] text-lg font-semibold mb-6`}>
-            Our Contact  Numbers
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Abuja Branch */}
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-[#EEEEEE] hover:border-[#81B8F0]">
-              <div className="flex items-center gap-2 mb-4">
-                <MapPin className="w-5 h-5 text-[#003366]" />
-                <h3 className={`${outfit.className} font-bold text-[#003366]`}>Abuja</h3>
-              </div>
-              <p className="text-[#767676] text-sm leading-relaxed mb-3">
-                Abuja, Nigeria
-              </p>
-              <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
-                <Phone className="w-4 h-4 text-[#003366]" />
-                <a href="tel:+2349161684111" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm font-medium">
-                  +234 916 168 4111
-                </a>
-              </div>
-            </div>
-
-            {/* Port Harcourt Branch */}
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-[#EEEEEE] hover:border-[#81B8F0]">
-              <div className="flex items-center gap-2 mb-4">
-                <MapPin className="w-5 h-5 text-[#003366]" />
-                <h3 className={`${outfit.className} font-bold text-[#003366]`}>Port Harcourt</h3>
-              </div>
-              <p className="text-[#767676] text-sm leading-relaxed mb-3">
-                Port Harcourt, Nigeria
-              </p>
-              <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
-                <Phone className="w-4 h-4 text-[#003366]" />
-                <a href="tel:+2349161684111" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm font-medium">
-                  +234 916 168 4111
-                </a>
-              </div>
-            </div>
-
-            {/* Keffi Branch */}
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-[#EEEEEE] hover:border-[#81B8F0]">
-              <div className="flex items-center gap-2 mb-4">
-                <MapPin className="w-5 h-5 text-[#003366]" />
-                <h3 className={`${outfit.className} font-bold text-[#003366]`}>Keffi</h3>
-              </div>
-              <p className="text-[#767676] text-sm leading-relaxed mb-3">
-                Keffi, Nasarawa State, Nigeria
-              </p>
-              <div className="flex items-center gap-2 pt-3 border-t border-[#EEEEEE]">
-                <Phone className="w-4 h-4 text-[#003366]" />
-                <a href="tel:+2349075783540" className="text-[#003366] hover:text-[#81B8F0] transition-colors text-sm font-medium">
-                  +234 907 578 3540
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Social Icons - Centered */}
-        <div className={`flex justify-center gap-4 mb-12 ${isVisible ? 'animate-fadeIn delay-500' : 'opacity-0'}`}>
-          <a
-            href="#"
-            className="bg-white border border-[#EEEEEE] p-3 rounded-full flex items-center cursor-pointer hover:bg-[#003366] hover:border-[#003366] transition-all hover:scale-110 group"
-            aria-label="Instagram"
-          >
-            <Instagram className="w-5 h-5 text-[#003366] group-hover:text-white transition-colors" />
-          </a>
-          <a
-            href="#"
-            className="bg-white border border-[#EEEEEE] p-3 rounded-full flex items-center cursor-pointer hover:bg-[#003366] hover:border-[#003366] transition-all hover:scale-110 group"
-            aria-label="Twitter"
-          >
-            <Twitter className="w-5 h-5 text-[#003366] group-hover:text-white transition-colors" />
-          </a>
-          <a
-            href="#"
-            className="bg-white border border-[#EEEEEE] p-3 rounded-full flex items-center cursor-pointer hover:bg-[#003366] hover:border-[#003366] transition-all hover:scale-110 group"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5 text-[#003366] group-hover:text-white transition-colors" />
-          </a>
+          ))}
         </div>
       </div>
 
-      {/* Footer Image */}
-      <div className={`w-full relative mt-8 ${isVisible ? 'animate-fadeIn delay-500' : 'opacity-0'}`}>
-        <Image
-          src="/footer-image.png"
-          alt="Footer"
-          width={1440}
-          height={280}
-          className="w-full h-auto object-cover"
-          quality={100}
-        />
+      {/* Offices */}
+      <div className="section-container py-10 border-b border-white/[0.06]">
+        <p className="text-[11px] font-semibold text-white/20 uppercase tracking-widest mb-6">Our Offices</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {offices.map((o) => (
+            <div
+              key={o.city}
+              className={`rounded-xl p-4 ${
+                o.primary
+                  ? "bg-gradient-to-br from-[#003366]/40 to-[#001122]/60 border border-[#0066CC]/20"
+                  : "bg-white/[0.03] border border-white/[0.05]"
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-2.5">
+                <span className="text-base">{o.flag}</span>
+                <div>
+                  <p className="text-[13px] font-semibold text-white/70">{o.city}</p>
+                  <p className="text-[11px] text-white/30">{o.country}</p>
+                </div>
+              </div>
+              {o.address && (
+                <div className="flex items-start gap-1.5 mb-1.5">
+                  <MapPin size={11} className="text-white/25 mt-0.5 shrink-0" />
+                  <p className="text-[11px] text-white/30 leading-snug">{o.address}</p>
+                </div>
+              )}
+              <div className="flex items-center gap-1.5">
+                <Phone size={11} className="text-white/25 shrink-0" />
+                <p className="text-[11px] text-white/35">{o.phone}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+
+      {/* Bottom bar */}
+      <div className="section-container py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] text-white/20">© 2026 Talim Education Technology. All rights reserved.</p>
+
+          <div className="flex items-center gap-1">
+            {[
+              { icon: Twitter, label: "Twitter" },
+              { icon: Linkedin, label: "LinkedIn" },
+              { icon: Instagram, label: "Instagram" },
+              { icon: Youtube, label: "YouTube" },
+            ].map(({ icon: Icon, label }) => (
+              <a
+                key={label}
+                href="#"
+                aria-label={label}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/25 hover:text-white/60 hover:bg-white/[0.06] transition-all"
+              >
+                <Icon size={15} />
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((link) => (
+              <a key={link} href="#" className="text-[12px] text-white/20 hover:text-white/45 transition-colors">
+                {link}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
   );
-};
-
-export default Footer;
+}

@@ -1,153 +1,151 @@
 "use client";
 
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { X } from "lucide-react";
+import { X, Building2, GraduationCap, BookOpen, Heart, ArrowRight } from "lucide-react";
 
-interface Portal {
-  name: string;
-  url: string;
-  description: string;
-  icon: string;
-}
-
-interface PortalModalProps {
+interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const portals: Portal[] = [
+const portals = [
   {
-    name: "Student",
+    icon: BookOpen,
+    label: "Student Portal",
+    description: "Access your grades, resources, timetable, and messages",
     url: "https://students.mytalim.com",
-    description: "Access your courses, assignments, and progress",
-    icon: "🎓",
+    color: "text-[#0DCCB4]",
+    iconBg: "bg-teal-50 border-teal-200",
+    hoverBorder: "hover:border-teal-300",
   },
   {
-    name: "Teacher",
+    icon: GraduationCap,
+    label: "Teacher Portal",
+    description: "Manage classes, curriculum, attendance, and grading",
     url: "https://teachers.mytalim.com",
-    description: "Manage classes, create content, and track student progress",
-    icon: "👩‍🏫",
+    color: "text-purple-500",
+    iconBg: "bg-purple-50 border-purple-200",
+    hoverBorder: "hover:border-purple-300",
   },
   {
-    name: "Parent",
+    icon: Heart,
+    label: "Parent Portal",
+    description: "Monitor your child's progress, attendance, and results",
     url: "https://parents.mytalim.com",
-    description: "Monitor your child's academic progress and activities",
-    icon: "👨‍👩‍👧‍👦",
+    color: "text-rose-500",
+    iconBg: "bg-rose-50 border-rose-200",
+    hoverBorder: "hover:border-rose-300",
   },
   {
-    name: "School Admin",
+    icon: Building2,
+    label: "School Admin Portal",
+    description: "Oversee your entire institution from one dashboard",
     url: "https://school.mytalim.com",
-    description: "Oversee school operations and manage staff",
-    icon: "🏫",
+    color: "text-blue-500",
+    iconBg: "bg-blue-50 border-blue-200",
+    hoverBorder: "hover:border-blue-300",
   },
 ];
 
-const PortalModal: React.FC<PortalModalProps> = ({ isOpen, onClose }) => {
-  const handlePortalClick = (url: string) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-    onClose();
-  };
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
+};
 
+const panelVariants = {
+  hidden: { opacity: 0, scale: 0.96, y: 16 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  exit: { opacity: 0, scale: 0.96, y: 16, transition: { duration: 0.2 } },
+};
+
+const container = { hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } };
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+};
+
+export default function PortalModal({ isOpen, onClose }: Props) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Backdrop */}
+        <motion.div
+          variants={overlayVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={onClose}
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            variants={panelVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Content */}
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 pt-6 pb-5 border-b border-gray-100">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#003366] to-[#0066CC] flex items-center justify-center">
+                  <span className="text-white font-bold text-xs" style={{ fontFamily: "var(--font-manrope)" }}>T</span>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-900" style={{ fontFamily: "var(--font-manrope)" }}>Choose Your Portal</p>
+                  <p className="text-[11px] text-gray-400">Select your role to continue</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-all"
+              >
+                <X size={15} />
+              </button>
+            </div>
+
+            {/* Portal cards */}
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+              variants={container}
+              initial="hidden"
+              animate="visible"
+              className="p-4 grid grid-cols-2 gap-2.5"
             >
-              {/* Header */}
-              <div className="flex justify-between items-center p-6 border-b border-gray-100">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/talim.svg"
-                    alt="Talim Logo"
-                    width={32}
-                    height={32}
-                  />
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900">
-                      Choose Your Portal
-                    </h2>
-                    <p className="text-sm text-gray-600">
-                      Select your role to access the appropriate dashboard
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              {portals.map((p) => (
+                <motion.a
+                  key={p.label}
+                  variants={item}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group flex flex-col p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-white card-hover ${p.hoverBorder} transition-all duration-200`}
                 >
-                  <X className="w-5 h-5 text-gray-500" />
-                </button>
-              </div>
-
-              {/* Portal Options */}
-              <div className="p-6">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {portals.map((portal, index) => (
-                    <motion.button
-                      key={portal.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      onClick={() => handlePortalClick(portal.url)}
-                      className="group relative bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 text-left"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                          {portal.icon}
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
-                            {portal.name}
-                          </h3>
-                          <p className="text-sm text-gray-600 leading-relaxed">
-                            {portal.description}
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Hover effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </motion.button>
-                  ))}
-                </div>
-
-                {/* Footer */}
-                <div className="mt-6 pt-4 border-t border-gray-100 text-center">
-                  <p className="text-sm text-gray-500">
-                    Need help? Contact{" "}
-                    <a
-                      href="mailto:support@mytalim.com"
-                      className="text-blue-600 hover:underline"
-                    >
-                      support@mytalim.com
-                    </a>
+                  <div className={`w-9 h-9 rounded-lg border flex items-center justify-center mb-3 ${p.iconBg}`}>
+                    <p.icon size={17} className={p.color} />
+                  </div>
+                  <p className="text-[13px] font-semibold text-gray-900 mb-1" style={{ fontFamily: "var(--font-manrope)" }}>
+                    {p.label}
                   </p>
-                </div>
-              </div>
+                  <p className="text-[11px] text-gray-500 leading-snug flex-1">{p.description}</p>
+                  <div className={`flex items-center gap-1 mt-3 text-[11px] font-semibold ${p.color} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                    Open <ArrowRight size={10} />
+                  </div>
+                </motion.a>
+              ))}
             </motion.div>
+
+            {/* Footer */}
+            <div className="px-6 pb-5 pt-1 text-center">
+              <p className="text-[12px] text-gray-400">
+                Need help?{" "}
+                <a href="mailto:support@mytalim.com" className="text-[#003366] font-semibold hover:underline">
+                  support@mytalim.com
+                </a>
+              </p>
+            </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
-};
-
-export default PortalModal;
+}

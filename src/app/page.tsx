@@ -1,32 +1,32 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import FaqSection from "@/components/FaqSection";
-import Description from "@/components/Description";
-import Reason from "@/components/Reason";
+import TrustBar from "@/components/TrustBar";
+import ProblemStatement from "@/components/ProblemStatement";
+import PlatformOverview from "@/components/PlatformOverview";
+import InstitutionTypes from "@/components/InstitutionTypes";
+import DataDrivenSection from "@/components/DataDrivenSection";
+import VerifiedRecords from "@/components/VerifiedRecords";
+import RolePortals from "@/components/RolePortals";
+import RealResults from "@/components/RealResults";
+import VideoSection from "@/components/VideoSection";
 import CTASection from "@/components/CTASection";
-import TrustBadgeSection from "@/components/Partners";
-import WhySchoolsChoose from "@/components/WhySchoolsChoose";
-import WhySchoolsNeedTalim from "@/components/NeedForTalim";
-import TrustedBySchools from "@/components/TrustedBySchools";
-import TalimVideoSection from "@/components/TalimVideoSection";
-import BranchingDiagram from "@/components/Ani";
-import MobileAppSection from "@/components/MobileAppSection";
-import UpcomingEventSection from "@/components/UpcomingEventSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="space-y-2 px-4 bg-[#FBFCFE] md:px-0">
-      <Header />
+    <main className="overflow-x-hidden">
+      <Navbar />
       <Hero />
-      <TrustBadgeSection />
-      <WhySchoolsChoose />
-      <WhySchoolsNeedTalim />
-      <TrustedBySchools />
-      <TalimVideoSection />
-      <UpcomingEventSection />
-      <MobileAppSection />
-      <FaqSection />
+      <TrustBar />
+      <ProblemStatement />
+      <PlatformOverview />
+      <InstitutionTypes />
+      <DataDrivenSection />
+      <VerifiedRecords />
+      <RolePortals />
+      <RealResults />
+      <VideoSection />
+      <CTASection />
       <Footer />
     </main>
   );
