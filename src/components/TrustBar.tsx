@@ -1,51 +1,30 @@
-"use client";
+import Image from "next/image";
 
-import { motion } from "framer-motion";
+const types = [
+  ["Primary schools", "/images/landing/institution-types/primary-schools.png"],
+  ["Secondary schools", "/images/landing/institution-types/secondary-schools.png"],
+  ["Colleges and universities", "/images/landing/institution-types/colleges-universities.png"],
+  ["Vocational institutes", "/images/landing/institution-types/vocational-institutes.png"],
+  ["Training academies", "/images/landing/institution-types/training-academies.png"],
+  ["School networks", "/images/landing/institution-types/school-networks.png"],
+] as const;
 
-const institutionTypes = [
-  { label: "Primary Schools", icon: "🏫" },
-  { label: "Secondary Schools", icon: "🎓" },
-  { label: "Colleges & Universities", icon: "🏛️" },
-  { label: "Vocational Institutes", icon: "🔧" },
-  { label: "Training Academies", icon: "📚" },
-  { label: "School Networks", icon: "🌐" },
-];
+const trust = ["Connected school data", "Role-based access", "Secure infrastructure", "Guided onboarding"];
 
 export default function TrustBar() {
   return (
-    <section className="py-14 bg-white border-b border-gray-100">
-      <div className="section-container">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center text-[13px] font-semibold text-gray-400 uppercase tracking-widest mb-8"
-        >
-          Built for every type of educational institution
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-3"
-        >
-          {institutionTypes.map(({ label, icon }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 bg-gray-50 hover:border-[#003366]/30 hover:bg-[#003366]/[0.03] transition-all duration-200 cursor-default"
-            >
-              <span className="text-base">{icon}</span>
-              <span className="text-[13px] font-medium text-gray-600">{label}</span>
-            </motion.div>
+    <section id="institutions" className="border-b border-[#b8cee2] bg-[#dce9f5] px-5 py-16">
+      <div className="mx-auto max-w-[1340px]">
+        <div className="mb-9 flex flex-wrap justify-center gap-2.5">
+          {trust.map((item) => <span key={item} className="rounded-full border border-[#bdd1e4] bg-[#e7f0f8] px-4 py-2 text-xs font-semibold text-[#46617d]">{item}</span>)}
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {types.map(([label, src]) => (
+            <div key={label} className="overflow-hidden rounded-2xl border border-[#bfd2e4] bg-[#eaf2f9] shadow-[0_8px_30px_rgba(15,35,60,.06)] transition duration-300 hover:-translate-y-1 hover:border-[#8fb5d8] hover:shadow-[0_15px_40px_rgba(15,35,60,.1)]">
+              <Image src={src} alt={label} width={350} height={466} sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 190px" className="h-auto w-full" />
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
