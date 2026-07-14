@@ -18,6 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.mytalim.com"),
   title: "Talim — The Education Infrastructure for Measurable Learning",
   description:
     "Talim connects schools, colleges, and universities with the data infrastructure they need to measure outcomes, verify credentials, and grow with confidence. Built for every institution, worldwide.",
