@@ -24,14 +24,23 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
   font-family: var(--font-inter), system-ui, sans-serif;
-  background-color: #ffffff;
+  background-color: #dce9f5;
   color: #0a0a14;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.talim-soft-contrast .text-white {
+  color: #e4edf7;
+}
+
+.talim-soft-contrast .bg-white {
+  background-color: #edf4fa;
 }
 
 /* ── Gradient text ─────────────────────────────────────── */
@@ -124,6 +133,44 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+.talim-dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+@keyframes talim-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.talim-marquee {
+  animation: talim-marquee 28s linear infinite;
+}
+
+.talim-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes credential-scan {
+  0% { transform: translateY(0); opacity: 0; }
+  12% { opacity: .75; }
+  88% { opacity: .5; }
+  100% { transform: translateY(430px); opacity: 0; }
+}
+
+.credential-scan {
+  animation: credential-scan 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
 }
 
 /* ── Badge pill ────────────────────────────────────────── */

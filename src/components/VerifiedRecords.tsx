@@ -1,24 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, Globe, BadgeCheck, Lock, ArrowRight } from "lucide-react";
 
 const features = [
   { icon: BadgeCheck, text: "Cryptographically signed academic records" },
   { icon: Globe, text: "Verifiable by employers and institutions worldwide" },
-  { icon: Lock, text: "Tamper-proof — impossible to falsify" },
-  { icon: ShieldCheck, text: "Compliant with international credentialing standards" },
+  { icon: Lock, text: "Designed to make unauthorized changes detectable" },
+  { icon: ShieldCheck, text: "Built toward portable credential verification" },
 ];
 
 function CredentialCard() {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-xl max-w-sm mx-auto">
+    <div className="group relative mx-auto max-w-sm overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-xl transition duration-500 hover:-translate-y-2 hover:rotate-[.35deg] hover:shadow-[0_30px_80px_rgba(0,51,102,.2)]">
+      <div className="credential-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0DCCB4] to-transparent opacity-0 group-hover:opacity-100" />
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#003366] to-[#0066CC] flex items-center justify-center">
-            <span className="text-white font-bold text-xs" style={{ fontFamily: "var(--font-manrope)" }}>T</span>
-          </div>
-          <span className="font-bold text-gray-900 text-sm" style={{ fontFamily: "var(--font-manrope)" }}>mytalim</span>
+          <Image src="/images/landing/brand/talim-mark.png" alt="Talim" width={34} height={34} className="rounded-lg shadow-sm" />
+          <span className="font-bold text-gray-900 text-sm" style={{ fontFamily: "var(--font-manrope)" }}>Talim</span>
         </div>
         <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-700 text-[10px] font-semibold">
           <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
@@ -62,7 +62,7 @@ function CredentialCard() {
 
 export default function VerifiedRecords() {
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section id="verified-records" className="py-28 bg-white overflow-hidden">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -73,11 +73,6 @@ export default function VerifiedRecords() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0DCCB4]/10 border border-[#0DCCB4]/25 text-[#0DCCB4] text-[10px] font-semibold uppercase tracking-widest mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0DCCB4] animate-pulse" />
-              The Future of Credentials
-            </span>
-
             <h2
               className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6"
               style={{ fontFamily: "var(--font-manrope)" }}
@@ -89,15 +84,13 @@ export default function VerifiedRecords() {
             </h2>
 
             <p className="text-lg text-gray-500 leading-relaxed mb-8">
-              We&apos;re building toward a world where every grade, every credential, and
-              every academic milestone is cryptographically secured and independently
-              verifiable — by employers, universities, and institutions worldwide.
+              We&apos;re exploring a future where academic milestones can be securely issued
+              and independently checked by authorized employers, universities, and institutions.
             </p>
 
             <p className="text-base text-gray-500 leading-relaxed mb-8">
-              No more fraudulent certificates. No more lost transcripts. Just a permanent,
-              portable academic identity that travels with every learner — from their first
-              classroom to their last degree.
+              The goal is a portable academic record that learners can carry across institutions
+              while issuers retain clear control over authenticity and access.
             </p>
 
             <ul className="space-y-3 mb-10">
@@ -111,10 +104,10 @@ export default function VerifiedRecords() {
               ))}
             </ul>
 
-            <button className="group flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-[#003366] border border-[#003366]/25 hover:bg-[#003366]/5 hover:border-[#003366]/40 transition-all duration-200">
+            <a href="mailto:hello@mytalim.com?subject=Talim%20verified%20records" className="group flex w-fit items-center gap-2 rounded-xl border border-[#003366]/25 px-6 py-3 text-sm font-semibold text-[#003366] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#003366]/40 hover:bg-[#003366]/5">
               Join the Waitlist
               <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-            </button>
+            </a>
           </motion.div>
 
           {/* Right: credential card */}
@@ -132,7 +125,7 @@ export default function VerifiedRecords() {
             </div>
             {/* Floating badge */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              animate={{ y: [0, -8, 0], rotate: [0, 1, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-4 -right-4 flex items-center gap-2 px-3 py-2 rounded-xl bg-white shadow-lg border border-gray-100"
             >

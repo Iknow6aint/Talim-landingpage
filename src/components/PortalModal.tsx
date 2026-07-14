@@ -1,151 +1,51 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Building2, GraduationCap, BookOpen, Heart, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, BookOpen, Building2, GraduationCap, Heart, X } from "lucide-react";
+import { useEffect } from "react";
 
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-}
+interface Props { isOpen: boolean; onClose: () => void; }
 
 const portals = [
-  {
-    icon: BookOpen,
-    label: "Student Portal",
-    description: "Access your grades, resources, timetable, and messages",
-    url: "https://students.mytalim.com",
-    color: "text-[#0DCCB4]",
-    iconBg: "bg-teal-50 border-teal-200",
-    hoverBorder: "hover:border-teal-300",
-  },
-  {
-    icon: GraduationCap,
-    label: "Teacher Portal",
-    description: "Manage classes, curriculum, attendance, and grading",
-    url: "https://teachers.mytalim.com",
-    color: "text-purple-500",
-    iconBg: "bg-purple-50 border-purple-200",
-    hoverBorder: "hover:border-purple-300",
-  },
-  {
-    icon: Heart,
-    label: "Parent Portal",
-    description: "Monitor your child's progress, attendance, and results",
-    url: "https://parents.mytalim.com",
-    color: "text-rose-500",
-    iconBg: "bg-rose-50 border-rose-200",
-    hoverBorder: "hover:border-rose-300",
-  },
-  {
-    icon: Building2,
-    label: "School Admin Portal",
-    description: "Oversee your entire institution from one dashboard",
-    url: "https://school.mytalim.com",
-    color: "text-blue-500",
-    iconBg: "bg-blue-50 border-blue-200",
-    hoverBorder: "hover:border-blue-300",
-  },
-];
-
-const overlayVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.2 } },
-  exit: { opacity: 0, transition: { duration: 0.2 } },
-};
-
-const panelVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 16 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-  exit: { opacity: 0, scale: 0.96, y: 16, transition: { duration: 0.2 } },
-};
-
-const container = { hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } };
-const item = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-};
+  { icon: Building2, label: "School Admin", description: "Institution operations, finance and reporting", url: "https://school.mytalim.com", number: "01" },
+  { icon: BookOpen, label: "Teacher", description: "Classes, attendance, assessments and grading", url: "https://teachers.mytalim.com", number: "02" },
+  { icon: Heart, label: "Parent", description: "Children, payments, attendance and updates", url: "https://parents.mytalim.com", number: "03" },
+  { icon: GraduationCap, label: "Student", description: "Subjects, timetable, grades and resources", url: "https://students.mytalim.com", number: "04" },
+] as const;
 
 export default function PortalModal({ isOpen, onClose }: Props) {
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = previous; window.removeEventListener("keydown", onKey); };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          variants={overlayVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={onClose}
-        >
-          <motion.div
-            variants={panelVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 pt-6 pb-5 border-b border-gray-100">
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#003366] to-[#0066CC] flex items-center justify-center">
-                  <span className="text-white font-bold text-xs" style={{ fontFamily: "var(--font-manrope)" }}>T</span>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-gray-900" style={{ fontFamily: "var(--font-manrope)" }}>Choose Your Portal</p>
-                  <p className="text-[11px] text-gray-400">Select your role to continue</p>
-                </div>
-              </div>
-              <button
-                onClick={onClose}
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-all"
-              >
-                <X size={15} />
-              </button>
-            </div>
+      {isOpen && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[70] grid place-items-center bg-[#01070d]/82 p-4 backdrop-blur-md" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+        <motion.div role="dialog" aria-modal="true" aria-labelledby="portal-title" initial={{ opacity: 0, y: 24, scale: .965 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18, scale: .98 }} transition={{ duration: .36, ease: [0.22, 1, 0.36, 1] }} className="relative w-full max-w-3xl overflow-hidden rounded-[30px] border border-blue-300/15 bg-[#06182a] shadow-[0_35px_100px_rgba(0,0,0,.6)]">
+          <div className="absolute -right-24 -top-24 size-72 rounded-full bg-blue-600/20 blur-[90px]" />
+          <div className="relative flex items-start justify-between border-b border-blue-200/10 px-6 py-6 sm:px-8">
+            <div className="flex items-center gap-4"><Image src="/images/landing/brand/talim-mark.png" alt="" width={42} height={42} className="rounded-xl" /><div><p className="text-[10px] font-extrabold uppercase tracking-[.18em] text-blue-300">Choose your workspace</p><h2 id="portal-title" className="mt-1 font-display text-2xl font-extrabold text-[#e4edf7]">Where are you signing in?</h2></div></div>
+            <button autoFocus onClick={onClose} className="grid size-10 place-items-center rounded-full border border-blue-200/10 bg-blue-100/[.05] text-[#91a7bd] transition hover:rotate-90 hover:bg-blue-100/10 hover:text-[#dce7f3]" aria-label="Close portal selector"><X size={18} /></button>
+          </div>
 
-            {/* Portal cards */}
-            <motion.div
-              variants={container}
-              initial="hidden"
-              animate="visible"
-              className="p-4 grid grid-cols-2 gap-2.5"
-            >
-              {portals.map((p) => (
-                <motion.a
-                  key={p.label}
-                  variants={item}
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex flex-col p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-white card-hover ${p.hoverBorder} transition-all duration-200`}
-                >
-                  <div className={`w-9 h-9 rounded-lg border flex items-center justify-center mb-3 ${p.iconBg}`}>
-                    <p.icon size={17} className={p.color} />
-                  </div>
-                  <p className="text-[13px] font-semibold text-gray-900 mb-1" style={{ fontFamily: "var(--font-manrope)" }}>
-                    {p.label}
-                  </p>
-                  <p className="text-[11px] text-gray-500 leading-snug flex-1">{p.description}</p>
-                  <div className={`flex items-center gap-1 mt-3 text-[11px] font-semibold ${p.color} opacity-0 group-hover:opacity-100 transition-opacity`}>
-                    Open <ArrowRight size={10} />
-                  </div>
-                </motion.a>
-              ))}
-            </motion.div>
-
-            {/* Footer */}
-            <div className="px-6 pb-5 pt-1 text-center">
-              <p className="text-[12px] text-gray-400">
-                Need help?{" "}
-                <a href="mailto:support@mytalim.com" className="text-[#003366] font-semibold hover:underline">
-                  support@mytalim.com
-                </a>
-              </p>
-            </div>
+          <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: .07 } } }} className="relative grid gap-3 p-5 sm:grid-cols-2 sm:p-8">
+            {portals.map(({ icon: Icon, label, description, url, number }) => <motion.a key={label} variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} href={url} target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden rounded-2xl border border-blue-200/10 bg-[#0a2138] p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-400/40 hover:bg-[#0d2945] hover:shadow-[0_18px_45px_rgba(0,70,170,.18)]">
+              <div className="flex items-start justify-between"><span className="grid size-11 place-items-center rounded-xl border border-blue-400/20 bg-blue-500/10 text-blue-300 transition group-hover:scale-110 group-hover:bg-blue-500/20"><Icon size={20} /></span><span className="font-mono text-xs text-[#4f6c89]">{number}</span></div>
+              <h3 className="mt-6 font-display text-lg font-extrabold text-[#dce7f3]">{label} Portal</h3>
+              <p className="mt-2 text-sm leading-6 text-[#8097ad]">{description}</p>
+              <span className="mt-5 flex items-center gap-2 text-xs font-extrabold text-blue-300">Open workspace <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+            </motion.a>)}
           </motion.div>
+
+          <div className="relative flex flex-col gap-2 border-t border-blue-200/10 px-6 py-5 text-xs text-[#7088a0] sm:flex-row sm:items-center sm:justify-between sm:px-8"><p>Each portal uses the same connected Talim system.</p><a href="mailto:support@mytalim.com" className="font-bold text-blue-300 transition hover:text-[#dce7f3]">Need help? Contact support</a></div>
         </motion.div>
-      )}
+      </motion.div>}
     </AnimatePresence>
   );
 }

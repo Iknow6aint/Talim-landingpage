@@ -1,139 +1,22 @@
-"use client";
+import Image from "next/image";
+import { Mail } from "lucide-react";
 
-import { Mail, MapPin, Phone, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+const footerLinks = [
+  { title:"Platform", links:[["Overview","#platform"],["Product Tour","#product-tour"],["Analytics","#analytics"],["Verified Records","#verified-records"]] },
+  { title:"Solutions", links:[["Primary Schools","#institutions"],["Secondary Schools","#institutions"],["Colleges","#institutions"],["School Networks","#institutions"]] },
+  { title:"Stakeholders", links:[["School Administrators","https://school.mytalim.com"],["Teachers","https://teachers.mytalim.com"],["Parents","https://parents.mytalim.com"],["Students","https://students.mytalim.com"]] },
+  { title:"Resources", links:[["Product Tour","#product-tour"],["FAQs","#faq"],["Contact Support","mailto:support@mytalim.com"]] },
+  { title:"Company", links:[["About Talim","#about"],["Contact","mailto:support@mytalim.com"],["Book a Demo","mailto:support@mytalim.com?subject=Talim%20Demo%20Request"]] },
+] as const;
 
-const footerLinks = {
-  Platform: ["School Operations", "Academic Intelligence", "Communication", "Financial Tools", "Verified Records"],
-  Solutions: ["Primary Schools", "Secondary Schools", "Colleges & Universities", "Vocational Institutes", "School Networks"],
-  Company: ["About Talim", "Careers", "Press", "Blog", "Contact Us"],
-  Resources: ["Documentation", "API Reference", "Case Studies", "Help Center", "System Status"],
-};
+const marquee = ["School Operations","Academic Intelligence","Every Stakeholder Connected","Secure Payments","Measurable Learning"];
 
-const offices = [
-  {
-    city: "Charlotte, NC",
-    country: "United States",
-    address: "1235 East BLVD, Charlotte, NC 28278",
-    phone: "+1 888 778-0218",
-    flag: "🇺🇸",
-    primary: true,
-  },
-  { city: "Abuja", country: "Nigeria", phone: "+234 916 168 4111", flag: "🇳🇬" },
-  { city: "Port Harcourt", country: "Nigeria", phone: "+234 916 168 4111", flag: "🇳🇬" },
-  { city: "Keffi, Nasarawa", country: "Nigeria", phone: "+234 907 578 3540", flag: "🇳🇬" },
-];
-
-export default function Footer() {
-  return (
-    <footer className="bg-[#020810] text-white">
-      {/* Top section */}
-      <div className="section-container py-16 border-b border-white/[0.06]">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#003366] to-[#0066CC] flex items-center justify-center">
-                <span className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-manrope)" }}>T</span>
-              </div>
-              <span className="font-bold text-white text-lg" style={{ fontFamily: "var(--font-manrope)" }}>mytalim</span>
-            </div>
-            <p className="text-[13px] text-white/35 leading-relaxed mb-5">
-              Education infrastructure for institutions that believe learning should be measurable, verifiable, and lifelong.
-            </p>
-            <a
-              href="mailto:support@mytalim.com"
-              className="flex items-center gap-2 text-[13px] text-white/40 hover:text-white/70 transition-colors"
-            >
-              <Mail size={13} />
-              support@mytalim.com
-            </a>
-          </div>
-
-          {/* Nav columns */}
-          {Object.entries(footerLinks).map(([group, links]) => (
-            <div key={group}>
-              <p className="text-[11px] font-semibold text-white/25 uppercase tracking-widest mb-4">{group}</p>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-[13px] text-white/40 hover:text-white/75 transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Offices */}
-      <div className="section-container py-10 border-b border-white/[0.06]">
-        <p className="text-[11px] font-semibold text-white/20 uppercase tracking-widest mb-6">Our Offices</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {offices.map((o) => (
-            <div
-              key={o.city}
-              className={`rounded-xl p-4 ${
-                o.primary
-                  ? "bg-gradient-to-br from-[#003366]/40 to-[#001122]/60 border border-[#0066CC]/20"
-                  : "bg-white/[0.03] border border-white/[0.05]"
-              }`}
-            >
-              <div className="flex items-center gap-2 mb-2.5">
-                <span className="text-base">{o.flag}</span>
-                <div>
-                  <p className="text-[13px] font-semibold text-white/70">{o.city}</p>
-                  <p className="text-[11px] text-white/30">{o.country}</p>
-                </div>
-              </div>
-              {o.address && (
-                <div className="flex items-start gap-1.5 mb-1.5">
-                  <MapPin size={11} className="text-white/25 mt-0.5 shrink-0" />
-                  <p className="text-[11px] text-white/30 leading-snug">{o.address}</p>
-                </div>
-              )}
-              <div className="flex items-center gap-1.5">
-                <Phone size={11} className="text-white/25 shrink-0" />
-                <p className="text-[11px] text-white/35">{o.phone}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="section-container py-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[12px] text-white/20">© 2026 Talim Education Technology. All rights reserved.</p>
-
-          <div className="flex items-center gap-1">
-            {[
-              { icon: Twitter, label: "Twitter" },
-              { icon: Linkedin, label: "LinkedIn" },
-              { icon: Instagram, label: "Instagram" },
-              { icon: Youtube, label: "YouTube" },
-            ].map(({ icon: Icon, label }) => (
-              <a
-                key={label}
-                href="#"
-                aria-label={label}
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-white/25 hover:text-white/60 hover:bg-white/[0.06] transition-all"
-              >
-                <Icon size={15} />
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((link) => (
-              <a key={link} href="#" className="text-[12px] text-white/20 hover:text-white/45 transition-colors">
-                {link}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
+export default function Footer(){return <footer id="about" className="overflow-hidden bg-[#020d18] text-white">
+  <div className="overflow-hidden border-b border-white/[.06] py-5"><div className="talim-marquee flex w-max">{[...marquee,...marquee].map((item,index)=><span key={`${item}-${index}`} className="flex items-center gap-4 whitespace-nowrap px-6 text-xs font-semibold text-white/50">{item}<span className="text-[#2563EB]">+</span></span>)}</div></div>
+  <div className="overflow-hidden px-5 pt-6 text-center"><p className="font-display text-[clamp(6rem,17vw,12rem)] font-extrabold leading-[.85] tracking-[-.06em] text-white">Talim</p></div>
+  <div className="mx-auto grid max-w-[1340px] gap-10 px-5 pb-12 pt-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_repeat(5,1fr)] lg:px-6">
+    <div><a href="#home" className="flex items-center gap-2.5 font-display text-lg font-extrabold"><Image src="/images/landing/brand/talim-mark.png" alt="" width={30} height={30} className="rounded-lg"/>Talim</a><p className="mt-4 max-w-[230px] text-sm leading-6 text-white/40">Education infrastructure for measurable learning.</p><a href="mailto:support@mytalim.com" className="mt-5 flex items-center gap-2 text-xs text-white/45 transition hover:text-white"><Mail size={13}/>support@mytalim.com</a></div>
+    {footerLinks.map(column=><div key={column.title}><p className="text-xs font-extrabold text-white/80">{column.title}</p><ul className="mt-5 space-y-3">{column.links.map(([label,href])=><li key={label}><a href={href} className="text-xs text-white/40 transition hover:text-white/75" {...(href.startsWith("http")?{target:"_blank",rel:"noopener noreferrer"}:{})}>{label}</a></li>)}</ul></div>)}
+  </div>
+  <div className="mx-auto flex max-w-[1340px] flex-col gap-3 border-t border-white/[.07] px-5 py-7 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between lg:px-6"><p>© 2026 Talim Education Technology. All rights reserved.</p><p>Privacy and legal information available on request.</p></div>
+  </footer>}

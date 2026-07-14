@@ -1,70 +1,16 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Calendar } from "lucide-react";
 import PortalModal from "./PortalModal";
 
 export default function CTASection() {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  return (
-    <>
-      <section className="relative bg-[#050D1A] dot-grid py-28 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#0066CC] blur-[200px] opacity-12 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[#003366] blur-[160px] opacity-15 pointer-events-none" />
-
-        <div className="section-container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-            className="max-w-3xl mx-auto"
-          >
-            <p className="text-[11px] font-semibold text-[#0DCCB4] uppercase tracking-widest mb-6">
-              Get Started Today
-            </p>
-
-            <h2
-              className="text-5xl sm:text-[62px] font-bold text-white leading-[1.05] tracking-tight mb-6"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              The Future of Education{" "}
-              <span className="gradient-text">Is Measurable.</span>
-            </h2>
-
-            <p className="text-xl text-white/45 leading-relaxed mb-12 max-w-2xl mx-auto">
-              Join institutions across the world that are building smarter, more connected,
-              and more data-driven schools — starting today.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="group flex items-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-[#003366] to-[#0066CC] hover:from-[#004480] hover:to-[#0077EE] shadow-[0_0_40px_rgba(0,102,204,0.45)] hover:shadow-[0_0_60px_rgba(0,102,204,0.6)] transition-all duration-200"
-              >
-                Start for Free
-                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
-              </button>
-
-              <button
-                onClick={() => setModalOpen(true)}
-                className="flex items-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold text-white/70 hover:text-white border border-white/[0.12] hover:border-white/25 hover:bg-white/[0.04] transition-all duration-200"
-              >
-                <Calendar size={16} />
-                Book a Demo
-              </button>
-            </div>
-
-            <p className="mt-8 text-sm text-white/25">
-              Free setup · No credit card required · Onboard in under 15 minutes
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <PortalModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-    </>
-  );
+  const [open, setOpen] = useState(false);
+  return <>
+    <section className="relative overflow-hidden bg-[#2563EB] px-5 py-24 text-center sm:py-28">
+      <div className="absolute inset-0 talim-dot-grid opacity-30"/><div className="absolute -left-20 top-0 size-80 rounded-full border border-white/10"/><div className="absolute -right-20 bottom-0 size-96 rounded-full border border-white/10"/>
+      <div className="relative mx-auto max-w-4xl"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-white/65">Ready when you are</p><h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-6xl">Your Institution Is Already Generating the Data. Talim Helps You Use It.</h2><p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">Bring operations, communication, finance, and learning insight into one connected platform.</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><a href="mailto:support@mytalim.com?subject=Talim%20Demo%20Request" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#003366] px-7 py-4 font-bold text-white transition hover:-translate-y-0.5">Book a Demo <ArrowRight size={17}/></a><button onClick={()=>setOpen(true)} className="rounded-full bg-white px-7 py-4 font-bold text-[#2563EB] transition hover:-translate-y-0.5">Explore the Portals</button></div></div>
+    </section>
+    <PortalModal isOpen={open} onClose={()=>setOpen(false)}/>
+  </>;
 }

@@ -1,145 +1,105 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Building2, GraduationCap, BookOpen, Heart, ArrowRight } from "lucide-react";
-import PortalModal from "./PortalModal";
+import { ArrowUpRight, BookOpen, Building2, Check, GraduationCap, Users } from "lucide-react";
+import { useState } from "react";
 
 const roles = [
   {
     icon: Building2,
-    role: "School Admins",
-    headline: "Run your entire school from one screen",
-    body: "Manage every class, staff member, fee, timetable, announcement, and report — without switching tools or losing data.",
-    features: ["Class & staff management", "Fee collection & receipts", "School-wide announcements", "Financial reporting"],
-    color: "text-blue-500",
-    iconBg: "bg-blue-50 border-blue-100",
-    accent: "from-blue-500/5 to-blue-600/0",
-    hoverBorder: "hover:border-blue-200",
+    role: "School Admin",
+    image: "/images/landing/product/admin-dashboard-demo.png",
+    width: 1647,
+    height: 955,
+    mobile: false,
+    features: ["Complete institutional oversight", "Financial and operational reports", "Staff and student management", "Approve workflows instantly"],
     url: "https://school.mytalim.com",
   },
   {
-    icon: GraduationCap,
-    role: "Teachers",
-    headline: "Spend more time teaching, less time tracking",
-    body: "Curriculum, attendance, grading, and parent communication — organized, automated, and accessible anywhere.",
-    features: ["Attendance marking & analytics", "Curriculum & assessment tools", "Grading & result publishing", "Resource sharing"],
-    color: "text-purple-500",
-    iconBg: "bg-purple-50 border-purple-100",
-    accent: "from-purple-500/5 to-purple-600/0",
-    hoverBorder: "hover:border-purple-200",
+    icon: BookOpen,
+    role: "Teacher",
+    image: "/images/landing/product/teacher-dashboard-demo.png",
+    width: 1701,
+    height: 925,
+    mobile: false,
+    features: ["Plan lessons and assessments", "Grade efficiently", "Track learner progress", "Mark attendance in seconds"],
     url: "https://teachers.mytalim.com",
   },
   {
-    icon: BookOpen,
-    role: "Students",
-    headline: "Own your academic journey",
-    body: "See your grades, resources, schedule, and attendance in real time. Stay connected with teachers and track your progress.",
-    features: ["Live grade tracking", "Learning resources library", "Class timetable", "Real-time messaging"],
-    color: "text-[#0DCCB4]",
-    iconBg: "bg-teal-50 border-teal-100",
-    accent: "from-teal-500/5 to-teal-600/0",
-    hoverBorder: "hover:border-teal-200",
-    url: "https://students.mytalim.com",
-  },
-  {
-    icon: Heart,
-    role: "Parents",
-    headline: "Stay connected without the anxiety",
-    body: "Know exactly how your child is doing — attendance, results, timetables, and direct teacher messages — all in one place.",
-    features: ["Child attendance calendar", "Results & grade reports", "Fee payment portal", "Direct teacher messaging"],
-    color: "text-rose-500",
-    iconBg: "bg-rose-50 border-rose-100",
-    accent: "from-rose-500/5 to-rose-600/0",
-    hoverBorder: "hover:border-rose-200",
+    icon: Users,
+    role: "Parent",
+    image: "/images/landing/product/parent-children-demo.png",
+    width: 853,
+    height: 1844,
+    mobile: true,
+    features: ["Track attendance and results", "View fees and receipts", "Communicate with the school", "Submit leave requests"],
     url: "https://parents.mytalim.com",
   },
-];
-
-const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
-const card = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-};
+  {
+    icon: GraduationCap,
+    role: "Student",
+    image: "/images/landing/product/student-dashboard-demo.png",
+    width: 1703,
+    height: 923,
+    mobile: false,
+    features: ["View timetable and subjects", "Track assignments and results", "Access resources and messages", "See progress at a glance"],
+    url: "https://students.mytalim.com",
+  },
+] as const;
 
 export default function RolePortals() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [active, setActive] = useState(0);
 
   return (
-    <>
-      <section id="solutions" className="py-28 bg-[#F8FAFC] dot-grid-light">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7 }}
-            className="text-center max-w-2xl mx-auto mb-16"
-          >
-            <p className="text-[11px] font-semibold text-[#003366] uppercase tracking-widest mb-4">For Everyone</p>
-            <h2
-              className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-5"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              Talim Works for{" "}
-              <span style={{ backgroundImage: "linear-gradient(135deg, #003366, #0066CC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                Everyone in the Learning Journey
-              </span>
-            </h2>
-            <p className="text-lg text-gray-500 leading-relaxed">
-              Four dedicated portals, one connected platform. Every stakeholder gets exactly
-              what they need — nothing more, nothing less.
-            </p>
-          </motion.div>
+    <section id="solutions" className="relative overflow-hidden bg-[#cfe2f3] px-5 py-24 sm:py-28">
+      <div className="absolute inset-0 dot-grid-light opacity-70" />
+      <div className="relative mx-auto max-w-[1380px]">
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} className="mx-auto max-w-4xl text-center">
+          <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[#2563eb]">Built for every stakeholder</p>
+          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-[#06366d] sm:text-6xl">
+            Powerful Portals.<br />One Connected Community.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#315373]/70 sm:text-lg">Each person gets a focused experience. Every action still updates one shared source of truth.</p>
+        </motion.div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-          >
-            {roles.map((r) => (
-              <motion.div
-                key={r.role}
-                variants={card}
-                className={`bg-white border border-gray-150 rounded-2xl p-7 card-hover group ${r.hoverBorder} transition-all duration-200`}
-              >
-                <div className="flex items-start justify-between mb-5">
-                  <div className={`w-11 h-11 rounded-xl border flex items-center justify-center ${r.iconBg}`}>
-                    <r.icon size={20} className={r.color} />
-                  </div>
-                  <span className="text-[12px] font-semibold text-gray-400 uppercase tracking-widest">{r.role}</span>
-                </div>
-
-                <h3 className="text-[18px] font-bold text-gray-900 mb-3 leading-snug" style={{ fontFamily: "var(--font-manrope)" }}>
-                  {r.headline}
-                </h3>
-                <p className="text-[14px] text-gray-500 leading-relaxed mb-5">{r.body}</p>
-
-                <ul className="space-y-1.5 mb-6">
-                  {r.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <span className={`w-1 h-1 rounded-full ${r.color.replace("text-", "bg-")}`} />
-                      <p className="text-[13px] text-gray-500">{f}</p>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className={`flex items-center gap-1.5 text-[13px] font-semibold ${r.color} group-hover:gap-2.5 transition-all duration-200`}
+        <div className="-mx-5 mt-14 overflow-x-auto px-5 pb-8 [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:px-0">
+          <div className="flex min-w-max snap-x snap-mandatory gap-5 lg:grid lg:min-w-0 lg:grid-cols-4">
+            {roles.map((role, index) => {
+              const Icon = role.icon;
+              const selected = active === index;
+              return (
+                <motion.article
+                  key={role.role}
+                  onMouseEnter={() => setActive(index)}
+                  onFocusCapture={() => setActive(index)}
+                  onClick={() => setActive(index)}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                  className={`group w-[82vw] max-w-[340px] snap-center overflow-hidden rounded-[28px] border-2 bg-[#e8f1f8] p-3 shadow-[0_20px_50px_rgba(0,51,102,.08)] transition-colors duration-300 lg:w-auto ${selected ? "border-[#2563eb]" : "border-[#b9cee2] hover:border-[#8fb5d8]"}`}
                 >
-                  Explore {r.role} Portal
-                  <ArrowRight size={13} />
-                </button>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+                  <div className="relative flex h-[190px] items-start justify-center overflow-hidden rounded-[20px] bg-[#051426]">
+                    <Image src={role.image} alt={`${role.role} Talim portal`} width={role.width} height={role.height} sizes="(max-width:1024px) 340px, 24vw" className={role.mobile ? "h-[340px] w-auto object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]" : "h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#051426]/25 to-transparent" />
+                    <span className={`absolute right-3 top-3 size-2.5 rounded-full transition ${selected ? "bg-[#35d07f] shadow-[0_0_14px_#35d07f]" : "bg-white/30"}`} />
+                  </div>
 
-      <PortalModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-    </>
+                  <div className="px-3 pb-4 pt-4">
+                    <div className="flex items-center gap-3">
+                      <span className="grid size-10 place-items-center rounded-xl bg-[#dceeff] text-[#06366d]"><Icon size={19} /></span>
+                      <h3 className="font-display text-xl font-extrabold text-[#101827]">{role.role}</h3>
+                    </div>
+                    <ul className="mt-5 space-y-2.5">
+                      {role.features.map((feature) => <li key={feature} className="flex items-start gap-2 text-sm leading-snug text-[#5f7186]"><Check size={15} strokeWidth={2.5} className="mt-0.5 shrink-0 text-[#22c55e]" />{feature}</li>)}
+                    </ul>
+                    <a href={role.url} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#2563eb]">Explore portal <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
