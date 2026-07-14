@@ -1,136 +1,124 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { BookOpen, Building2, GraduationCap, Grid3X3, Info, Users, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import PortalModal from "./PortalModal";
 
 const navLinks = [
+  { label: "Home", href: "#home" },
   { label: "Platform", href: "#platform" },
   { label: "Solutions", href: "#solutions" },
-  { label: "For Institutions", href: "#institutions" },
-  { label: "About", href: "#about" },
+  { label: "Institutions", href: "#institutions" },
+  { label: "Product tour", href: "#product-tour" },
+];
+
+const menuItems = [
+  { icon: Grid3X3, title: "Platform", copy: "Everything institutions need in one system", href: "#platform" },
+  { icon: GraduationCap, title: "Solutions", copy: "Connected tools for every stakeholder", href: "#solutions" },
+  { icon: Building2, title: "Institutions", copy: "Built for schools, colleges and networks", href: "#institutions" },
+  { icon: Users, title: "Portals", copy: "Admin, teacher, parent and student access", href: "#solutions" },
+  { icon: BookOpen, title: "Product tour", copy: "See Talim working across an institution", href: "#product-tour" },
+  { icon: Info, title: "About Talim", copy: "Education infrastructure for measurable learning", href: "#about" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    const close = (event: KeyboardEvent) => event.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", close);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", close);
+    };
+  }, [menuOpen]);
+
   return (
     <>
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#050D1A]/90 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.04)]"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="section-container">
-          <div className="flex items-center justify-between h-[72px]">
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-[8px] bg-gradient-to-br from-[#003366] to-[#0066CC] flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-manrope)" }}>T</span>
-              </div>
-              <span
-                className="text-white font-bold text-lg tracking-tight"
-                style={{ fontFamily: "var(--font-manrope)" }}
-              >
-                mytalim
-              </span>
-            </a>
+      <motion.div animate={{ top: scrolled ? 0 : 42 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="fixed inset-x-0 z-50 flex justify-center px-3 pointer-events-none">
+        <motion.nav
+          aria-label="Main navigation"
+          animate={{ marginTop: scrolled ? 12 : 20, maxWidth: scrolled ? 900 : 980 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-auto flex w-full items-center gap-3 rounded-full border border-white/15 bg-[#041525]/88 px-3 py-2.5 shadow-[0_14px_50px_rgba(0,10,30,.38)] backdrop-blur-xl md:gap-6 md:px-5"
+        >
+          <a href="#home" className="flex shrink-0 items-center gap-2 text-white" aria-label="Talim home">
+            <Image src="/images/landing/brand/talim-mark.png" alt="" width={30} height={30} className="rounded-lg" />
+            <span className="font-display text-lg font-extrabold tracking-tight">Talim</span>
+          </a>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/[0.06] transition-all duration-150"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+          <div className="hidden flex-1 items-center justify-center gap-5 lg:flex">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} className="text-sm font-semibold text-white/70 transition-colors hover:text-white">
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-            {/* Desktop CTAs */}
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="px-4 py-2 rounded-lg text-sm font-semibold text-white/80 hover:text-white hover:bg-white/[0.07] border border-white/[0.12] transition-all duration-150"
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="px-5 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-[#003366] to-[#0066CC] hover:from-[#004488] hover:to-[#0077EE] shadow-[0_0_20px_rgba(0,102,204,0.4)] transition-all duration-150"
-              >
-                Request a Demo
-              </button>
-            </div>
-
-            {/* Mobile menu button */}
+          <div className="ml-auto flex items-center gap-2">
             <button
-              className="md:hidden text-white/80 hover:text-white p-2"
-              onClick={() => setMenuOpen(!menuOpen)}
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              className="grid size-10 place-items-center rounded-full border border-white/15 bg-white/[.07] text-white transition hover:bg-white/15"
+              aria-label="Open navigation menu"
+              aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+              <Grid3X3 size={17} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setPortalOpen(true)}
+              className="hidden rounded-full bg-[#2563EB] px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_24px_rgba(37,99,235,.4)] transition hover:-translate-y-0.5 hover:bg-[#3471ef] sm:block"
+            >
+              Explore portals
             </button>
           </div>
-        </div>
+        </motion.nav>
+      </motion.div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {menuOpen && (
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-start justify-center bg-[#020a14]/75 px-4 pt-24 backdrop-blur-md"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onMouseDown={(event) => event.target === event.currentTarget && setMenuOpen(false)}
+          >
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden bg-[#050D1A]/95 backdrop-blur-xl border-t border-white/[0.06] overflow-hidden"
+              role="dialog" aria-modal="true" aria-label="Navigation menu"
+              initial={{ opacity: 0, y: 18, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12 }}
+              className="w-full max-w-4xl rounded-[28px] border border-white/10 bg-[#061a30] p-5 shadow-2xl sm:p-9"
             >
-              <div className="section-container py-4 flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="px-4 py-3 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/[0.06] transition-all"
-                  >
-                    {link.label}
+              <div className="mb-6 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-lg font-extrabold text-white">
+                  <Image src="/images/landing/brand/talim-mark.png" alt="" width={30} height={30} className="rounded-lg" /> Talim
+                </div>
+                <button autoFocus type="button" onClick={() => setMenuOpen(false)} className="grid size-10 place-items-center rounded-full bg-white/10 text-white" aria-label="Close menu"><X size={18} /></button>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {menuItems.map(({ icon: Icon, title, copy, href }) => (
+                  <a key={title} href={href} onClick={() => setMenuOpen(false)} className="group flex gap-4 rounded-2xl p-4 transition hover:bg-white/[.06]">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-blue-400/25 bg-blue-500/15 text-blue-300"><Icon size={19} /></span>
+                    <span><span className="block font-bold text-white">{title}</span><span className="mt-1 block text-sm leading-snug text-white/50">{copy}</span></span>
                   </a>
                 ))}
-                <div className="flex flex-col gap-2 pt-3 border-t border-white/[0.06] mt-2">
-                  <button
-                    onClick={() => { setModalOpen(true); setMenuOpen(false); }}
-                    className="w-full px-4 py-2.5 rounded-lg text-sm font-semibold text-white/80 border border-white/[0.12] text-center"
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    onClick={() => { setModalOpen(true); setMenuOpen(false); }}
-                    className="w-full px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-[#003366] to-[#0066CC] text-center"
-                  >
-                    Request a Demo
-                  </button>
-                </div>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-
-      <PortalModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <PortalModal isOpen={portalOpen} onClose={() => setPortalOpen(false)} />
     </>
   );
 }
