@@ -1,36 +1,48 @@
-import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Caveat, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 
-const inter = Inter({
-  variable: "--font-inter",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["600"],
   display: "swap",
 });
 
+const satoshi = localFont({
+  variable: "--font-satoshi",
+  src: [
+    { path: "./fonts/Satoshi-Bold.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/Satoshi-Black.woff2", weight: "900", style: "normal" },
+  ],
+  display: "swap",
+});
+
+const title = "Talim — Run Every Institution. Understand Every Learner.";
+const description =
+  "Talim connects school operations, academic data, finance, communication, and stakeholder experiences in one intelligent platform—so institutions make better decisions and every learner can succeed.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mytalim.com"),
-  title: "Talim — The Education Infrastructure for Measurable Learning",
-  description:
-    "Talim connects schools, colleges, and universities with the data infrastructure they need to measure outcomes, verify credentials, and grow with confidence. Built for every institution, worldwide.",
+  title,
+  description,
   keywords:
     "education infrastructure, school management system, learning management, academic record verification, data-driven education, student management, teacher portal, parent portal, EdTech platform, school software",
   authors: [{ name: "Talim Education Technology" }],
   creator: "Talim",
   publisher: "Talim",
   openGraph: {
-    title: "Talim — The Education Infrastructure for Measurable Learning",
-    description:
-      "Connect your institution to a platform where every learning moment is measurable, every record is verifiable, and every stakeholder stays connected.",
+    title,
+    description,
     url: "https://www.mytalim.com",
     siteName: "Talim",
     type: "website",
@@ -45,9 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Talim — The Education Infrastructure for Measurable Learning",
-    description:
-      "The platform where every learning moment becomes measurable, every record becomes verifiable.",
+    title,
+    description,
     images: ["/talim.svg"],
   },
   robots: {
@@ -69,15 +80,19 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#F6F4EC",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${caveat.variable} ${satoshi.variable}`}>
       <head>
         <StructuredData />
       </head>
-      <body className="antialiased bg-white">
+      <body className="antialiased">
         {children}
       </body>
     </html>
