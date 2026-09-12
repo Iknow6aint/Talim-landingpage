@@ -1,104 +1,92 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowUpRight, BookOpen, Building2, Check, GraduationCap, Users } from "lucide-react";
-import { useState } from "react";
+import { PORTAL_URLS, PRODUCT_IMAGES } from "@/lib/site";
+import { revealRange } from "@/lib/styles";
 
-const roles = [
+const portals = [
   {
-    icon: Building2,
-    role: "School Admin",
-    image: "/images/landing/product/admin-dashboard-demo.png",
-    width: 1647,
-    height: 955,
-    mobile: false,
+    key: "admin",
+    name: "School Admin",
+    dot: "bg-ink",
+    url: PORTAL_URLS.admin,
+    image: "admin-dashboard-demo",
+    tall: false,
     features: ["Complete institutional oversight", "Financial and operational reports", "Staff and student management", "Approve workflows instantly"],
-    url: "https://school.mytalim.com",
   },
   {
-    icon: BookOpen,
-    role: "Teacher",
-    image: "/images/landing/product/teacher-dashboard-demo.png",
-    width: 1701,
-    height: 925,
-    mobile: false,
+    key: "teacher",
+    name: "Teacher",
+    dot: "bg-brand",
+    url: PORTAL_URLS.teacher,
+    image: "teacher-dashboard-demo",
+    tall: false,
     features: ["Plan lessons and assessments", "Grade efficiently", "Track learner progress", "Mark attendance in seconds"],
-    url: "https://teachers.mytalim.com",
   },
   {
-    icon: Users,
-    role: "Parent",
-    image: "/images/landing/product/parent-children-demo.png",
-    width: 853,
-    height: 1844,
-    mobile: true,
+    key: "parent",
+    name: "Parent",
+    dot: "bg-pine",
+    url: PORTAL_URLS.parent,
+    image: "parent-children-demo",
+    tall: true,
     features: ["Track attendance and results", "View fees and receipts", "Communicate with the school", "Submit leave requests"],
-    url: "https://parents.mytalim.com",
   },
   {
-    icon: GraduationCap,
-    role: "Student",
-    image: "/images/landing/product/student-dashboard-demo.png",
-    width: 1703,
-    height: 923,
-    mobile: false,
+    key: "student",
+    name: "Student",
+    dot: "bg-sand",
+    url: PORTAL_URLS.student,
+    image: "student-dashboard-demo",
+    tall: false,
     features: ["View timetable and subjects", "Track assignments and results", "Access resources and messages", "See progress at a glance"],
-    url: "https://students.mytalim.com",
   },
-] as const;
+];
 
 export default function RolePortals() {
-  const [active, setActive] = useState(0);
-
   return (
-    <section id="solutions" className="relative overflow-hidden bg-[#cfe2f3] px-5 py-24 sm:py-28">
-      <div className="absolute inset-0 dot-grid-light opacity-70" />
-      <div className="relative mx-auto max-w-[1380px]">
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} className="mx-auto max-w-4xl text-center">
-          <p className="text-xs font-extrabold uppercase tracking-[.18em] text-[#2563eb]">Built for every stakeholder</p>
-          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-[#06366d] sm:text-6xl">
-            Powerful Portals.<br />One Connected Community.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#315373]/70 sm:text-lg">Each person gets a focused experience. Every action still updates one shared source of truth.</p>
-        </motion.div>
+    <section id="solutions" aria-labelledby="portals-title" className="px-7 pb-10 pt-[90px]">
+      <div className="mx-auto max-w-[1560px] text-center">
+        <p data-rise="" className="text-xs font-bold uppercase tracking-[0.16em] text-brand">Built for every stakeholder</p>
+        <h2 id="portals-title" data-wipe="" className="mx-auto mt-[22px] max-w-[960px] text-[clamp(34px,5.2vw,82px)] leading-[0.96] tracking-[-0.05em]">
+          Powerful Portals. One Connected Community.
+        </h2>
+        <p data-rise="" className="mx-auto mt-6 max-w-[720px] text-[19px] leading-[1.6] text-body">
+          Each person gets a focused experience. Every action still updates one shared source of truth. Hover a portal to see it come alive.
+        </p>
+      </div>
 
-        <div className="-mx-5 mt-14 overflow-x-auto px-5 pb-8 [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:px-0">
-          <div className="flex min-w-max snap-x snap-mandatory gap-5 lg:grid lg:min-w-0 lg:grid-cols-4">
-            {roles.map((role, index) => {
-              const Icon = role.icon;
-              const selected = active === index;
-              return (
-                <motion.article
-                  key={role.role}
-                  onMouseEnter={() => setActive(index)}
-                  onFocusCapture={() => setActive(index)}
-                  onClick={() => setActive(index)}
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                  className={`group w-[82vw] max-w-[340px] snap-center overflow-hidden rounded-[28px] border-2 bg-[#e8f1f8] p-3 shadow-[0_20px_50px_rgba(0,51,102,.08)] transition-colors duration-300 lg:w-auto ${selected ? "border-[#2563eb]" : "border-[#b9cee2] hover:border-[#8fb5d8]"}`}
-                >
-                  <div className="relative flex h-[190px] items-start justify-center overflow-hidden rounded-[20px] bg-[#051426]">
-                    <Image src={role.image} alt={`${role.role} Talim portal`} width={role.width} height={role.height} sizes="(max-width:1024px) 340px, 24vw" className={role.mobile ? "h-[340px] w-auto object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]" : "h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#051426]/25 to-transparent" />
-                    <span className={`absolute right-3 top-3 size-2.5 rounded-full transition ${selected ? "bg-[#35d07f] shadow-[0_0_14px_#35d07f]" : "bg-white/30"}`} />
-                  </div>
-
-                  <div className="px-3 pb-4 pt-4">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-[#dceeff] text-[#06366d]"><Icon size={19} /></span>
-                      <h3 className="font-display text-xl font-extrabold text-[#101827]">{role.role}</h3>
-                    </div>
-                    <ul className="mt-5 space-y-2.5">
-                      {role.features.map((feature) => <li key={feature} className="flex items-start gap-2 text-sm leading-snug text-[#5f7186]"><Check size={15} strokeWidth={2.5} className="mt-0.5 shrink-0 text-[#22c55e]" />{feature}</li>)}
-                    </ul>
-                    <a href={role.url} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#2563eb]">Explore portal <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>
-                  </div>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
+      <div className="mx-auto mt-[52px] grid max-w-[920px] grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[18px]">
+        {portals.map((portal, index) => (
+          <article key={portal.key} data-stake={portal.key} data-rise="" style={revealRange(index * 3, 26 + index * 3)} className="rounded-[26px] bg-white p-5 text-ink sm:p-7">
+            <div data-stake-panel="" className="aspect-[16/10] overflow-hidden rounded-2xl bg-mist px-3 pt-3">
+              {portal.tall ? (
+                <div className="flex h-full justify-center">
+                  <Image
+                    src={`${PRODUCT_IMAGES}/${portal.image}.png`}
+                    alt={`${portal.name} portal on Talim mobile`}
+                    width={853}
+                    height={1844}
+                    sizes="180px"
+                    className="h-auto w-[42%] self-start rounded-t-[18px] shadow-[0_10px_30px_rgba(11,37,69,0.18)]"
+                  />
+                </div>
+              ) : (
+                <div className="relative h-full overflow-hidden rounded-t-[10px]">
+                  <Image src={`${PRODUCT_IMAGES}/${portal.image}.png`} alt={`${portal.name} portal dashboard`} fill sizes="(max-width: 700px) 90vw, 440px" className="object-cover object-[left_top]" />
+                </div>
+              )}
+            </div>
+            <div className="mt-6 flex items-center gap-2.5">
+              <span data-stake-dot="" className={`inline-block size-2.5 rounded-full ${portal.dot}`} />
+              <h3 className="text-[25px] tracking-[-0.025em]">{portal.name}</h3>
+            </div>
+            <ul data-stake-sub="" className="mt-4 flex flex-col gap-2.5 text-base text-body">
+              {portal.features.map((feature) => <li key={feature}>{feature}</li>)}
+            </ul>
+            <a data-stake-link="" href={portal.url} target="_blank" rel="noopener noreferrer" className="mt-[22px] inline-block text-base font-bold text-brand">
+              Explore portal <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+        ))}
       </div>
     </section>
   );

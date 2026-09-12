@@ -1,32 +1,78 @@
 "use client";
 
 import { useState } from "react";
+import { gridLines } from "@/lib/styles";
 
-const datasets = {
-  Academic: { stats: [["92.1%","Attendance rate"],["82.6%","Average score"],["24","Needs attention"],["12","Active classes"]], bars: [40,55,48,70,62,80,75,90,68,85,95,88] },
-  Operational: { stats: [["1,248","Active students"],["86","Staff accounts"],["8","Campuses"],["64","Courses"]], bars: [65,60,72,58,80,76,62,70,85,90,78,82] },
-  Financial: { stats: [["94.3%","Collection rate"],["4","Payment channels"],["2h","Reconciliation"],["18","Fee categories"]], bars: [30,45,38,52,48,60,55,68,72,65,80,76] },
-} as const;
+const tabs = [
+  { label: "Academic", metrics: [["92.1%", "attendance rate"], ["82.6%", "average score"], ["24", "needs attention"], ["12", "active classes"]] },
+  { label: "Operational", metrics: [["1,248", "active students"], ["86", "staff accounts"], ["8", "campuses"], ["64", "courses"]] },
+  { label: "Financial", metrics: [["94.3%", "fee collection"], ["₦8.45M", "wallet balance"], ["₦6.20M", "revenue this month"], ["1.3%", "overdue"]] },
+];
 
-type Dataset = keyof typeof datasets;
+const bars = [
+  ["46%", "#C9D9F4"],
+  ["62%", "#C9D9F4"],
+  ["38%", "#C9D9F4"],
+  ["71%", "#1F6BFF"],
+  ["54%", "#C9D9F4"],
+  ["80%", "#1F6BFF"],
+  ["66%", "#C9D9F4"],
+  ["92%", "#0F766E"],
+  ["74%", "#C9D9F4"],
+  ["86%", "#1F6BFF"],
+] as const;
 
 export default function DataDrivenSection() {
-  const [active, setActive] = useState<Dataset>("Academic");
-  const data = datasets[active];
-  return <section id="analytics" className="relative overflow-hidden bg-[#041525] px-5 py-24 sm:py-28">
-    <div className="absolute inset-0 talim-dot-grid opacity-25" />
-    <div className="relative mx-auto max-w-[1160px] text-center">
-      <p className="text-xs font-extrabold uppercase tracking-[.16em] text-blue-300">Data that drives excellence</p>
-      <h2 className="mx-auto mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-6xl">See what is changing before the term ends.</h2>
-      <p className="mx-auto mt-5 max-w-2xl leading-7 text-white/50">Identify patterns in learning, operations, and finance early enough to take meaningful action.</p>
-      <div className="mt-9 flex justify-center gap-2">{(Object.keys(datasets) as Dataset[]).map(label => <button key={label} onClick={() => setActive(label)} className={`rounded-full border px-4 py-2.5 text-xs font-bold transition sm:px-6 ${active === label ? "border-[#2563EB] bg-[#2563EB] text-white" : "border-white/15 text-white/50 hover:border-white/30"}`}>{label}</button>)}</div>
-      <div className="mt-10 rounded-[28px] border border-white/10 bg-white/[.035] p-5 text-left sm:p-9">
-        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">{data.stats.map(([value,label]) => <div key={label}><p className="font-display text-2xl font-extrabold text-white sm:text-3xl">{value}</p><p className="mt-1 text-xs font-semibold text-white/35">{label}</p></div>)}</div>
-        <div className="mt-8 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
-          <div className="flex h-56 items-end gap-2 rounded-2xl bg-white/[.025] p-5">{data.bars.map((height,index)=><span key={index} className="flex-1 rounded-t bg-gradient-to-t from-[#174d9b] to-[#3B82F6] transition-[height] duration-500" style={{height:`${height}%`}} />)}</div>
-          <div className="rounded-2xl bg-white/[.025] p-5"><p className="text-[11px] font-bold uppercase tracking-wider text-white/35">Activity map</p><div className="mt-5 grid grid-cols-7 gap-2">{Array.from({length:35},(_,index)=><span key={index} className="aspect-square rounded-md bg-blue-500" style={{opacity:.18 + ((index*37)%72)/100}} />)}</div><p className="mt-5 text-xs leading-5 text-white/35">Illustrative demo data—not customer-wide statistics.</p></div>
+  const [active, setActive] = useState(2);
+
+  return (
+    <section id="analytics" aria-labelledby="analytics-title" className="px-7 pb-10 pt-[70px]">
+      <div data-rise="" className="relative mx-auto max-w-[1560px] overflow-hidden rounded-[32px] bg-brand p-5 sm:p-12">
+        <div aria-hidden="true" className="absolute inset-0" style={gridLines(0.08, 44)} />
+        <div className="relative grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-center gap-10">
+          <div className="min-w-0 rounded-3xl bg-white p-4 sm:p-7">
+            <div className="flex flex-nowrap gap-2 overflow-x-auto [scrollbar-width:none]">
+              {tabs.map((tab, index) => (
+                <button
+                  key={tab.label}
+                  type="button"
+                  data-btn=""
+                  aria-pressed={active === index}
+                  onClick={() => setActive(index)}
+                  className={`cursor-pointer whitespace-nowrap rounded-full px-[22px] py-[11px] text-sm font-bold ${active === index ? "bg-ink text-white" : "bg-mist text-ink"}`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <div key={active} className="mt-6 grid grid-cols-2 gap-3" style={{ animation: "tl-fade .4s cubic-bezier(.2,.8,.2,1) both" }}>
+              {tabs[active].metrics.map(([value, label]) => (
+                <div key={label} className="min-w-0 rounded-2xl bg-mist p-3.5 sm:p-[18px]">
+                  <p className="font-display text-[clamp(22px,6vw,30px)] font-black tracking-[-0.035em]">{value}</p>
+                  <p className="mt-0.5 font-hand text-[21px] leading-tight text-body">{label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3.5 flex h-[180px] items-end gap-2 rounded-2xl bg-mist p-[22px]">
+              {bars.map(([height, color], index) => (
+                <div key={index} data-bar="" className="flex-1 rounded-t-md" style={{ height, background: color }} />
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-muted">Illustrative demo data—not customer-wide statistics.</p>
+          </div>
+
+          <div className="min-w-0 text-white">
+            <p className="text-xs font-bold uppercase tracking-[0.16em]">Data that drives excellence</p>
+            <h2 id="analytics-title" className="mt-[22px] text-[clamp(32px,4.2vw,64px)] leading-[0.98] tracking-[-0.05em]">
+              See what is changing before the term ends.
+            </h2>
+            <p className="mt-[22px] text-[19px] leading-[1.6]">Identify patterns in learning, operations, and finance early enough to take meaningful action.</p>
+            <a data-btn="" href="#product-tour" className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-white px-[34px] py-[19px] text-[17px] font-bold text-ink hover:text-ink">
+              See it in the tour <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 }
