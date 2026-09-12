@@ -1,35 +1,40 @@
 import Navbar from "@/components/Navbar";
-import CapabilityMarquee from "@/components/CapabilityMarquee";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
+import PlatformPillars from "@/components/PlatformPillars";
+import CapabilityMarquee from "@/components/CapabilityMarquee";
+import InstitutionTypes from "@/components/InstitutionTypes";
 import ProductShowcase from "@/components/ProductShowcase";
-import MobileShowcase from "@/components/MobileShowcase";
 import ConnectedLayers from "@/components/ConnectedLayers";
-import DataDrivenSection from "@/components/DataDrivenSection";
-import VerifiedRecords from "@/components/VerifiedRecords";
 import RolePortals from "@/components/RolePortals";
 import RealResults from "@/components/RealResults";
+import DataDrivenSection from "@/components/DataDrivenSection";
+import MobileShowcase from "@/components/MobileShowcase";
+import VerifiedRecords from "@/components/VerifiedRecords";
 import FaqSection from "@/components/FaqSection";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
-import BoldStatement from "@/components/BoldStatement";
 
 export default function Home() {
   return (
-    <main className="talim-soft-contrast overflow-x-clip">
+    <>
       <Navbar />
-      <CapabilityMarquee />
-      <Hero />
-      <TrustBar />
-      <ProductShowcase />
-      <MobileShowcase />
-      <ConnectedLayers />
-      <RolePortals />
-      <RealResults />
-      <DataDrivenSection />
-      <VerifiedRecords />
-      <BoldStatement />
-      <FaqSection />
+      <main className="overflow-x-clip">
+        <Hero />
+        <PlatformPillars />
+        <CapabilityMarquee />
+        <InstitutionTypes />
+        <ProductShowcase />
+        <ConnectedLayers />
+        <RolePortals />
+        <RealResults />
+        <DataDrivenSection />
+        {/* <Testimonials /> goes here once approved, attributed quotes replace its placeholders. */}
+        <MobileShowcase />
+        <VerifiedRecords />
+        <FaqSection />
+        <CTASection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

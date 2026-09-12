@@ -1,22 +1,88 @@
-import Image from "next/image";
-import { Mail } from "lucide-react";
+import type { CSSProperties } from "react";
+import BrandMark from "./BrandMark";
+import { CONTACT_EMAIL, DEMO_HREF, PORTAL_URLS, PRIVACY_EMAIL, SUPPORT_EMAIL } from "@/lib/site";
 
-const footerLinks = [
-  { title:"Platform", links:[["Overview","#platform"],["Product Tour","#product-tour"],["Analytics","#analytics"],["Verified Records","#verified-records"]] },
-  { title:"Solutions", links:[["Primary Schools","#institutions"],["Secondary Schools","#institutions"],["Colleges","#institutions"],["School Networks","#institutions"]] },
-  { title:"Stakeholders", links:[["School Administrators","https://school.mytalim.com"],["Teachers","https://teachers.mytalim.com"],["Parents","https://parents.mytalim.com"],["Students","https://students.mytalim.com"]] },
-  { title:"Resources", links:[["Product Tour","#product-tour"],["FAQs","#faq"],["Contact Support","mailto:support@mytalim.com"]] },
-  { title:"Company", links:[["About Talim","#about"],["Contact","mailto:support@mytalim.com"],["Book a Demo","mailto:support@mytalim.com?subject=Talim%20Demo%20Request"]] },
-] as const;
+const columns = [
+  {
+    title: "Platform",
+    links: [
+      ["Platform overview", "#platform"],
+      ["Product tour", "#product-tour"],
+      ["Analytics", "#analytics"],
+      ["Verified records", "#verified-records"],
+      ["Mobile apps", "#mobile"],
+    ],
+  },
+  {
+    title: "Stakeholders",
+    links: [
+      ["School administrators", PORTAL_URLS.admin],
+      ["Teachers", PORTAL_URLS.teacher],
+      ["Parents", PORTAL_URLS.parent],
+      ["Students", PORTAL_URLS.student],
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      ["Stakeholder portals", "#solutions"],
+      ["FAQs", "#faq"],
+      ["Contact support", `mailto:${SUPPORT_EMAIL}`],
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      ["Institutions", "#institutions"],
+      ["Contact", `mailto:${CONTACT_EMAIL}`],
+      ["Book a demo", DEMO_HREF],
+    ],
+  },
+];
 
-const marquee = ["School Operations","Academic Intelligence","Every Stakeholder Connected","Secure Payments","Measurable Learning"];
+export default function Footer() {
+  return (
+    <footer className="bg-cream px-7 pb-14 pt-20">
+      <div className="mx-auto max-w-[1560px]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,190px),1fr))] gap-9">
+          <div className="min-w-0">
+            <a href="#home" className="flex items-center gap-2.5 text-ink hover:text-ink">
+              <BrandMark size={30} />
+              <span className="font-display text-[21px] font-black tracking-[-0.03em]">Talim</span>
+            </a>
+            <p className="mt-[18px] max-w-[260px] text-[17px] leading-[1.55] text-body">Education infrastructure for measurable learning.</p>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="mt-[18px] inline-block text-base font-semibold text-brand">{SUPPORT_EMAIL}</a>
+          </div>
 
-export default function Footer(){return <footer id="about" className="overflow-hidden bg-[#020d18] text-white">
-  <div className="overflow-hidden border-b border-white/[.06] py-5"><div className="talim-marquee flex w-max">{[...marquee,...marquee].map((item,index)=><span key={`${item}-${index}`} className="flex items-center gap-4 whitespace-nowrap px-6 text-xs font-semibold text-white/50">{item}<span className="text-[#2563EB]">+</span></span>)}</div></div>
-  <div className="overflow-hidden px-5 pt-6 text-center"><p className="font-display text-[clamp(6rem,17vw,12rem)] font-extrabold leading-[.85] tracking-[-.06em] text-white">Talim</p></div>
-  <div className="mx-auto grid max-w-[1340px] gap-10 px-5 pb-12 pt-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_repeat(5,1fr)] lg:px-6">
-    <div><a href="#home" className="flex items-center gap-2.5 font-display text-lg font-extrabold"><Image src="/images/landing/brand/talim-mark.png" alt="" width={30} height={30} className="rounded-lg"/>Talim</a><p className="mt-4 max-w-[230px] text-sm leading-6 text-white/40">Education infrastructure for measurable learning.</p><a href="mailto:support@mytalim.com" className="mt-5 flex items-center gap-2 text-xs text-white/45 transition hover:text-white"><Mail size={13}/>support@mytalim.com</a></div>
-    {footerLinks.map(column=><div key={column.title}><p className="text-xs font-extrabold text-white/80">{column.title}</p><ul className="mt-5 space-y-3">{column.links.map(([label,href])=><li key={label}><a href={href} className="text-xs text-white/40 transition hover:text-white/75" {...(href.startsWith("http")?{target:"_blank",rel:"noopener noreferrer"}:{})}>{label}</a></li>)}</ul></div>)}
-  </div>
-  <div className="mx-auto flex max-w-[1340px] flex-col gap-3 border-t border-white/[.07] px-5 py-7 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between lg:px-6"><p>© 2026 Talim Education Technology. All rights reserved.</p><p>Privacy and legal information available on request.</p></div>
-  </footer>}
+          {columns.map((column) => (
+            <nav key={column.title} aria-label={column.title}>
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{column.title}</p>
+              <ul className="mt-[18px] flex flex-col items-start gap-[11px] text-base">
+                {column.links.map(([label, href]) => (
+                  <li key={label}>
+                    <a data-foot-link="" href={href} className="text-ink" {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div aria-hidden="true" className="mt-[72px] flex items-end justify-center gap-[0.01em] overflow-hidden pb-[0.06em] font-display text-[clamp(64px,15vw,240px)] font-black leading-[0.8] tracking-[-0.055em] text-[#B9C4D2]">
+          {"Talim".split("").map((letter, index) => (
+            <span key={index} data-letter="" className="inline-block" style={{ animationRange: `entry ${index * 4}% entry 100%` } as CSSProperties}>
+              {letter}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap justify-between gap-3.5 border-t border-ink/10 pt-6 text-[15px] text-muted">
+          <p>© 2026 Talim Education Technology. All rights reserved.</p>
+          <a href={`mailto:${PRIVACY_EMAIL}`} className="text-muted">Privacy enquiries</a>
+        </div>
+      </div>
+    </footer>
+  );
+}

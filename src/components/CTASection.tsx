@@ -1,16 +1,41 @@
-"use client";
-
-import { ArrowRight } from "lucide-react";
-import { useState } from "react";
-import PortalModal from "./PortalModal";
+import BrandMark from "./BrandMark";
+import { DEMO_HREF } from "@/lib/site";
+import { gridLines } from "@/lib/styles";
 
 export default function CTASection() {
-  const [open, setOpen] = useState(false);
-  return <>
-    <section className="relative overflow-hidden bg-[#2563EB] px-5 py-24 text-center sm:py-28">
-      <div className="absolute inset-0 talim-dot-grid opacity-30"/><div className="absolute -left-20 top-0 size-80 rounded-full border border-white/10"/><div className="absolute -right-20 bottom-0 size-96 rounded-full border border-white/10"/>
-      <div className="relative mx-auto max-w-4xl"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-white/65">Ready when you are</p><h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-6xl">Your Institution Is Already Generating the Data. Talim Helps You Use It.</h2><p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">Bring operations, communication, finance, and learning insight into one connected platform.</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><a href="mailto:support@mytalim.com?subject=Talim%20Demo%20Request" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#003366] px-7 py-4 font-bold text-white transition hover:-translate-y-0.5">Book a Demo <ArrowRight size={17}/></a><button onClick={()=>setOpen(true)} className="rounded-full bg-white px-7 py-4 font-bold text-[#2563EB] transition hover:-translate-y-0.5">Explore the Portals</button></div></div>
+  return (
+    <section aria-labelledby="cta-title" className="px-7 pb-[90px] pt-[70px]">
+      <div data-rise="" className="relative mx-auto max-w-[1560px] overflow-hidden rounded-[34px] bg-ink px-6 py-[clamp(54px,7vw,96px)] text-center sm:px-11">
+        <div aria-hidden="true" className="absolute inset-0" style={gridLines(0.05, 46)} />
+        <svg viewBox="0 0 140 100" aria-hidden="true" className="absolute left-[5%] top-[16%] w-[100px] opacity-45" style={{ animation: "tl-float 11s ease-in-out infinite" }}>
+          <path d="M8 78 C34 24, 62 88, 88 40 C104 12, 126 34, 132 58" fill="none" stroke="#6FA3FF" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+        <svg viewBox="0 0 120 120" aria-hidden="true" className="absolute bottom-[14%] right-[6%] w-[92px] opacity-40" style={{ animation: "tl-float2 13s ease-in-out infinite" }}>
+          <path d="M60 12 C90 12, 110 36, 108 64 C106 94, 82 110, 56 108 C30 106, 12 84, 14 58 C16 34, 36 14, 58 14" fill="none" stroke="#6FA3FF" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+
+        <div className="relative">
+          <div className="inline-flex items-center gap-3 rounded-full bg-white/10 px-5 py-2.5">
+            <BrandMark size={24} />
+            <span className="font-display text-base font-black text-white">Talim</span>
+            <span className="hidden font-hand text-[21px] text-[#C9DCF8] sm:inline">built for measurable learning</span>
+          </div>
+          <h2 id="cta-title" className="mx-auto mt-[34px] max-w-[1100px] text-[clamp(40px,7vw,120px)] leading-[0.92] tracking-[-0.055em] text-white">
+            Let&apos;s Make Every Learning Moment Count.
+          </h2>
+          <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.6] text-[#C9DCF8]">
+            Give every institution the operational clarity to notice progress, respond earlier and help every learner move forward.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3.5">
+            <a data-btn="" href="#product-tour" className="inline-flex items-center gap-2.5 rounded-full bg-brand px-[38px] py-[21px] text-lg font-bold text-white hover:text-white">
+              See Talim in action <span aria-hidden="true">↗</span>
+            </a>
+            <a data-btn="" href={DEMO_HREF} className="inline-flex items-center rounded-full bg-white/12 px-[38px] py-[21px] text-lg font-bold text-white hover:text-white">
+              Book a demo
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
-    <PortalModal isOpen={open} onClose={()=>setOpen(false)}/>
-  </>;
+  );
 }

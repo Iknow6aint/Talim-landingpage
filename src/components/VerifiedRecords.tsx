@@ -1,138 +1,82 @@
-"use client";
+import BrandMark from "./BrandMark";
+import { WAITLIST_HREF } from "@/lib/site";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { ShieldCheck, Globe, BadgeCheck, Lock, ArrowRight } from "lucide-react";
-
-const features = [
-  { icon: BadgeCheck, text: "Cryptographically signed academic records" },
-  { icon: Globe, text: "Verifiable by employers and institutions worldwide" },
-  { icon: Lock, text: "Designed to make unauthorized changes detectable" },
-  { icon: ShieldCheck, text: "Built toward portable credential verification" },
+const promises = [
+  "Cryptographically signed academic records",
+  "Verifiable by employers and institutions worldwide",
+  "Designed to make unauthorized changes detectable",
+  "Built toward portable credential verification",
 ];
 
-function CredentialCard() {
-  return (
-    <div className="group relative mx-auto max-w-sm overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-xl transition duration-500 hover:-translate-y-2 hover:rotate-[.35deg] hover:shadow-[0_30px_80px_rgba(0,51,102,.2)]">
-      <div className="credential-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0DCCB4] to-transparent opacity-0 group-hover:opacity-100" />
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2.5">
-          <Image src="/images/landing/brand/talim-mark.png" alt="Talim" width={34} height={34} className="rounded-lg shadow-sm" />
-          <span className="font-bold text-gray-900 text-sm" style={{ fontFamily: "var(--font-manrope)" }}>Talim</span>
-        </div>
-        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-700 text-[10px] font-semibold">
-          <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
-          Verified
-        </span>
-      </div>
-
-      <div className="bg-gradient-to-br from-[#003366]/5 to-[#0066CC]/5 border border-[#003366]/10 rounded-xl p-4 mb-4">
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold mb-1">Academic Certificate</p>
-        <p className="text-lg font-bold text-gray-900" style={{ fontFamily: "var(--font-manrope)" }}>West African Senior School Certificate</p>
-        <p className="text-sm text-gray-500 mt-1">Issued: June 2024</p>
-      </div>
-
-      <div className="space-y-2.5">
-        {[
-          { subject: "Mathematics", grade: "A1" },
-          { subject: "English Language", grade: "A2" },
-          { subject: "Physics", grade: "B2" },
-          { subject: "Chemistry", grade: "B3" },
-        ].map(({ subject, grade }) => (
-          <div key={subject} className="flex items-center justify-between">
-            <p className="text-[13px] text-gray-600">{subject}</p>
-            <span className="px-2.5 py-0.5 rounded-full bg-[#003366]/10 text-[#003366] text-[12px] font-bold">{grade}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-        <div>
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Record Hash</p>
-          <p className="text-[11px] text-gray-500 font-mono mt-0.5">a3f9c2...8e4d1b</p>
-        </div>
-        <div className="flex items-center gap-1.5 text-teal-600">
-          <ShieldCheck size={14} />
-          <span className="text-[11px] font-semibold">Authentic</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+const grades = [
+  ["Mathematics", "A1"],
+  ["English Language", "A2"],
+  ["Physics", "B2"],
+  ["Chemistry", "B3"],
+];
 
 export default function VerifiedRecords() {
   return (
-    <section id="verified-records" className="py-28 bg-white overflow-hidden">
-      <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="verified-records" aria-labelledby="records-title" className="px-7 pb-10 pt-[100px]">
+      <div className="mx-auto grid max-w-[1560px] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-center gap-[52px]">
+        <div className="min-w-0">
+          <p data-rise="" className="text-xs font-bold uppercase tracking-[0.16em] text-pine">Verified records</p>
+          <h2 id="records-title" data-wipe="" className="mt-[22px] text-[clamp(32px,4.4vw,68px)] leading-[0.98] tracking-[-0.05em]">
+            Your Degree Should Be as Verifiable as{" "}
+            <span className="inline-block rounded-[14px] bg-pine px-[0.2em] pb-[0.1em] pt-[0.02em] text-white">Your Passport.</span>
+          </h2>
+          <p data-rise="" className="mt-[26px] text-lg leading-[1.65] text-body">
+            We&apos;re exploring a future where academic milestones can be securely issued and independently checked by authorized employers, universities, and institutions.
+          </p>
+          <p data-rise="" className="mt-[18px] text-lg leading-[1.65] text-body">
+            The goal is a portable academic record that learners can carry across institutions while issuers retain clear control over authenticity and access.
+          </p>
+          <ul data-rise="" className="mt-[30px] flex flex-col gap-3">
+            {promises.map((promise) => (
+              <li key={promise} className="flex items-center gap-[13px] text-[17px]">
+                <span aria-hidden="true" className="flex size-6 shrink-0 items-center justify-center rounded-full bg-pine text-xs font-bold text-white">✓</span>
+                {promise}
+              </li>
+            ))}
+          </ul>
+          <a data-btn="" href={WAITLIST_HREF} className="mt-[34px] inline-flex items-center gap-2.5 rounded-full bg-ink px-9 py-5 text-[17px] font-bold text-white hover:text-white">
+            Join the Waitlist <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
-          {/* Left: content */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          >
-            <h2
-              className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              Your Degree Should Be as Verifiable as{" "}
-              <span style={{ backgroundImage: "linear-gradient(135deg, #003366, #0066CC)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                Your Passport.
-              </span>
-            </h2>
-
-            <p className="text-lg text-gray-500 leading-relaxed mb-8">
-              We&apos;re exploring a future where academic milestones can be securely issued
-              and independently checked by authorized employers, universities, and institutions.
-            </p>
-
-            <p className="text-base text-gray-500 leading-relaxed mb-8">
-              The goal is a portable academic record that learners can carry across institutions
-              while issuers retain clear control over authenticity and access.
-            </p>
-
-            <ul className="space-y-3 mb-10">
-              {features.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-[#0DCCB4]/10 border border-[#0DCCB4]/20 flex items-center justify-center shrink-0">
-                    <Icon size={13} className="text-[#0DCCB4]" />
-                  </div>
-                  <p className="text-[15px] text-gray-600">{text}</p>
-                </li>
-              ))}
-            </ul>
-
-            <a href="mailto:hello@mytalim.com?subject=Talim%20verified%20records" className="group flex w-fit items-center gap-2 rounded-xl border border-[#003366]/25 px-6 py-3 text-sm font-semibold text-[#003366] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#003366]/40 hover:bg-[#003366]/5">
-              Join the Waitlist
-              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </motion.div>
-
-          {/* Right: credential card */}
-          <motion.div
-            initial={{ opacity: 0, x: 24, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-            className="relative"
-          >
-            {/* Decorative glow */}
-            <div className="absolute inset-0 blur-3xl opacity-20 bg-gradient-to-br from-teal-300 to-[#0066CC] rounded-3xl scale-90 pointer-events-none" />
-            <div className="relative">
-              <CredentialCard />
+        <div data-rise="" className="relative min-w-0">
+          <p className="absolute -right-1.5 -top-[22px] z-[2] rounded-full bg-pine px-5 py-[11px] text-sm font-bold text-white shadow-[0_10px_26px_rgba(15,118,110,0.28)]" style={{ animation: "tl-float2 8s ease-in-out infinite" }}>
+            Verifiable globally
+          </p>
+          <div data-lift="" className="rounded-[26px] bg-white p-5 shadow-[0_18px_50px_rgba(11,37,69,0.12)] sm:p-7">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-[11px]">
+                <BrandMark size={32} />
+                <span className="font-display text-xl font-black tracking-[-0.03em]">Talim</span>
+              </div>
+              <span className="rounded-full bg-[#E3F3F0] px-3.5 py-1.5 text-[13px] font-bold text-pine">Verified</span>
             </div>
-            {/* Floating badge */}
-            <motion.div
-              animate={{ y: [0, -8, 0], rotate: [0, 1, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -right-4 flex items-center gap-2 px-3 py-2 rounded-xl bg-white shadow-lg border border-gray-100"
-            >
-              <Globe size={14} className="text-[#003366]" />
-              <p className="text-[12px] font-semibold text-gray-700">Verifiable globally</p>
-            </motion.div>
-          </motion.div>
+            <div className="mt-[22px] rounded-[18px] bg-mist p-[22px]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Academic certificate</p>
+              <p className="mt-[9px] font-display text-2xl font-black leading-[1.18] tracking-[-0.028em]">West African Senior School Certificate</p>
+              <p className="mt-[9px] font-hand text-[22px] text-body">Issued: June 2024</p>
+            </div>
+            <dl className="mt-5 flex flex-col gap-3">
+              {grades.map(([subject, grade]) => (
+                <div key={subject} className="flex items-center justify-between text-[17px]">
+                  <dt>{subject}</dt>
+                  <dd className="rounded-lg bg-mist px-3 py-[3px] font-bold">{grade}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="mt-[22px] flex items-end justify-between border-t border-ink/10 pt-[18px]">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Record hash</p>
+                <p className="mt-[5px] font-mono text-sm">a3f9c2...8e4d1b</p>
+              </div>
+              <p className="text-sm font-bold text-pine">Authentic</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
