@@ -6,6 +6,7 @@ export const DEMO_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("
 export const WAITLIST_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Talim verified records")}`;
 
 export const PRODUCT_VIDEO_ID = "rmejrs_kzT8";
+export const APP_STORE_URL = "https://apps.apple.com/us/app/mytalim/id6783429017";
 export const LOGO_SRC = "/images/landing/brand/talim-mark.png";
 export const PRODUCT_IMAGES = "/images/landing/product";
 

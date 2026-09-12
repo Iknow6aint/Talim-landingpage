@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { PRODUCT_IMAGES } from "@/lib/site";
+import type { ReactNode } from "react";
+import { APP_STORE_URL, PRODUCT_IMAGES } from "@/lib/site";
 import { revealRange } from "@/lib/styles";
 
 const features = ["Push alerts for results, fees and announcements", "Offline-tolerant attendance capture", "One login across every portal role"];
@@ -29,10 +30,12 @@ function AppleIcon() {
   );
 }
 
-const stores = [
-  { icon: <GooglePlayIcon />, eyebrow: "Get it on", name: "Google Play" },
-  { icon: <AppleIcon />, eyebrow: "Download on the", name: "App Store" },
+const stores: { icon: ReactNode; eyebrow: string; name: string; href: string | null }[] = [
+  { icon: <AppleIcon />, eyebrow: "Download on the", name: "App Store", href: APP_STORE_URL },
+  { icon: <GooglePlayIcon />, eyebrow: "Get it on", name: "Google Play", href: null },
 ];
+
+const badgeClass = "inline-flex items-center gap-3.5 rounded-2xl bg-ink py-3.5 pl-5 pr-[26px] text-white";
 
 export default function MobileShowcase() {
   return (
@@ -55,17 +58,28 @@ export default function MobileShowcase() {
             ))}
           </ul>
           <div data-rise="" className="mt-[34px] flex flex-wrap gap-3.5">
-            {stores.map((store) => (
-              <div key={store.name} className="inline-flex items-center gap-3.5 rounded-2xl bg-ink py-3.5 pl-5 pr-[26px] text-white">
-                {store.icon}
-                <span className="flex flex-col leading-[1.15]">
-                  <span className="text-[11px] uppercase text-sky">{store.eyebrow}</span>
-                  <span className="font-display text-[19px] font-black tracking-[-0.02em]">{store.name}</span>
-                </span>
-              </div>
-            ))}
+            {stores.map((store) => {
+              const label = (
+                <>
+                  {store.icon}
+                  <span className="flex flex-col leading-[1.15]">
+                    <span className="text-[11px] uppercase text-sky">{store.eyebrow}</span>
+                    <span className="font-display text-[19px] font-black tracking-[-0.02em]">{store.name}</span>
+                  </span>
+                </>
+              );
+              return store.href ? (
+                <a key={store.name} data-btn="" href={store.href} target="_blank" rel="noopener noreferrer" className={`${badgeClass} hover:text-white`}>
+                  {label}
+                </a>
+              ) : (
+                <div key={store.name} className={`${badgeClass} opacity-60`}>
+                  {label}
+                </div>
+              );
+            })}
           </div>
-          <p className="mt-3.5 font-hand text-[23px] text-body">store links arrive at launch</p>
+          <p className="mt-3.5 font-hand text-[23px] text-body">Android app coming soon</p>
         </div>
 
         <div className="flex min-w-0 items-end justify-center gap-[clamp(12px,2vw,26px)]">
