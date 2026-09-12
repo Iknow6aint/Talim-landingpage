@@ -2,15 +2,16 @@ import type { CSSProperties } from "react";
 import BrandMark from "./BrandMark";
 import { CONTACT_EMAIL, DEMO_HREF, PORTAL_URLS, PRIVACY_EMAIL, SUPPORT_EMAIL } from "@/lib/site";
 
+// In-page targets are root-relative so the footer also works on /legal.
 const columns = [
   {
     title: "Platform",
     links: [
-      ["Platform overview", "#platform"],
-      ["Product tour", "#product-tour"],
-      ["Analytics", "#analytics"],
-      ["Verified records", "#verified-records"],
-      ["Mobile apps", "#mobile"],
+      ["Platform overview", "/#platform"],
+      ["Product tour", "/#product-tour"],
+      ["Analytics", "/#analytics"],
+      ["Verified records", "/#verified-records"],
+      ["Mobile apps", "/#mobile"],
     ],
   },
   {
@@ -25,15 +26,17 @@ const columns = [
   {
     title: "Resources",
     links: [
-      ["Stakeholder portals", "#solutions"],
-      ["FAQs", "#faq"],
+      ["Stakeholder portals", "/#solutions"],
+      ["FAQs", "/#faq"],
+      ["Privacy policy", "/legal"],
+      ["Terms of service", "/legal#terms"],
       ["Contact support", `mailto:${SUPPORT_EMAIL}`],
     ],
   },
   {
     title: "Company",
     links: [
-      ["Institutions", "#institutions"],
+      ["Institutions", "/#institutions"],
       ["Contact", `mailto:${CONTACT_EMAIL}`],
       ["Book a demo", DEMO_HREF],
     ],
@@ -46,7 +49,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1560px]">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,190px),1fr))] gap-9">
           <div className="min-w-0">
-            <a href="#home" className="flex items-center gap-2.5 text-ink hover:text-ink">
+            <a href="/#home" className="flex items-center gap-2.5 text-ink hover:text-ink">
               <BrandMark size={30} />
               <span className="font-display text-[21px] font-black tracking-[-0.03em]">Talim</span>
             </a>
@@ -80,7 +83,11 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-wrap justify-between gap-3.5 border-t border-ink/10 pt-6 text-[15px] text-muted">
           <p>© 2026 Talim Education Technology. All rights reserved.</p>
-          <a href={`mailto:${PRIVACY_EMAIL}`} className="text-muted">Privacy enquiries</a>
+          <div className="flex flex-wrap gap-[18px]">
+            <a href="/legal" className="text-muted">Privacy</a>
+            <a href="/legal#terms" className="text-muted">Terms</a>
+            <a href={`mailto:${PRIVACY_EMAIL}`} className="text-muted">Privacy enquiries</a>
+          </div>
         </div>
       </div>
     </footer>

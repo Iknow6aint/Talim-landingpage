@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import BrandMark from "./BrandMark";
 import { CONTACT_EMAIL, DEMO_HREF } from "@/lib/site";
 
+// Root-relative so the links also work from pages other than the homepage.
 const links = [
-  { label: "Product", href: "#product-tour" },
-  { label: "How it works", href: "#platform" },
-  { label: "Institutions", href: "#institutions" },
+  { label: "Product", href: "/#product-tour" },
+  { label: "How it works", href: "/#platform" },
+  { label: "Institutions", href: "/#institutions" },
   { label: "Contact", href: `mailto:${CONTACT_EMAIL}` },
 ];
 
@@ -45,7 +46,7 @@ export default function Navbar() {
           scrolled ? "py-[7px] pl-4 pr-[7px] shadow-[0_6px_30px_rgba(11,37,69,0.14)]" : "py-2.5 pl-[18px] pr-2.5 shadow-[0_2px_20px_rgba(11,37,69,0.07)]"
         }`}
       >
-        <a href="#home" aria-label="Talim home" className="flex shrink-0 items-center gap-[9px] text-ink hover:text-ink">
+        <a href="/#home" aria-label="Talim home" className="flex shrink-0 items-center gap-[9px] text-ink hover:text-ink">
           <BrandMark size={28} priority />
           <span className="font-display text-xl font-black tracking-[-0.035em]">Talim</span>
         </a>
