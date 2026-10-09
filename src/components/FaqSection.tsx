@@ -1,20 +1,21 @@
-"use client";
-
-import { useState } from "react";
+import FaqAccordion, { type FaqItem } from "./FaqAccordion";
 import { CONTACT_EMAIL } from "@/lib/site";
 
-const faqs = [
-  ["Which institutions can use Talim?", "Talim supports primary and secondary schools, colleges, vocational institutes, training academies, and multi-campus school networks."],
-  ["Can we migrate our existing records?", "Yes. The onboarding process can include structured migration of student, staff, class, and academic records from your existing system."],
-  ["What does onboarding involve?", "Onboarding is planned around your institution and can include configuration, data preparation, role setup, and guided staff training."],
-  ["Do parents and students receive accounts?", "Yes. Each stakeholder can access a dedicated portal designed around the information and actions relevant to their role."],
-  ["Can Talim support multiple campuses?", "Yes. Talim is designed to connect operations and reporting across both single-campus and multi-campus institutions."],
-  ["How is access to institutional data controlled?", "Access is role-based, so users see the tools and records permitted for their responsibilities within the institution."],
+const faqs: FaqItem[] = [
+  { question: "Which institutions can use Talim?", answer: "Talim supports primary and secondary schools, colleges, vocational institutes, training academies, and multi-campus school networks." },
+  { question: "Can we migrate our existing records?", answer: "Yes. The onboarding process can include structured migration of student, staff, class, and academic records from your existing system." },
+  { question: "What does onboarding involve?", answer: "Onboarding is planned around your institution and can include configuration, data preparation, role setup, and guided staff training." },
+  { question: "Do parents and students receive accounts?", answer: "Yes. Each stakeholder can access a dedicated portal designed around the information and actions relevant to their role." },
+  { question: "Can Talim support multiple campuses?", answer: "Yes. Talim is designed to connect operations and reporting across both single-campus and multi-campus institutions." },
+  { question: "How is access to institutional data controlled?", answer: "Access is role-based, so users see the tools and records permitted for their responsibilities within the institution." },
 ];
 
+/**
+ * Homepage FAQ band: heading and contact button beside the shared accordion.
+ *
+ * @returns The FAQ section.
+ */
 export default function FaqSection() {
-  const [open, setOpen] = useState(0);
-
   return (
     <section id="faq" aria-labelledby="faq-title" className="px-7 pb-10 pt-[100px]">
       <div className="mx-auto grid max-w-[1560px] grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] items-start gap-[52px]">
@@ -31,34 +32,7 @@ export default function FaqSection() {
           </a>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-2.5">
-          {faqs.map(([question, answer], index) => {
-            const isOpen = open === index;
-            return (
-              <div key={question} className={`rounded-[20px] transition-colors duration-200 ${isOpen ? "bg-white" : "bg-white/55"}`}>
-                <h3>
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={isOpen ? `faq-answer-${index}` : undefined}
-                    onClick={() => setOpen(isOpen ? -1 : index)}
-                    className="flex w-full cursor-pointer items-start justify-between gap-5 px-[22px] py-6 text-left text-xl tracking-[-0.022em] sm:px-[26px]"
-                  >
-                    {question}
-                    <span aria-hidden="true" className="text-2xl font-normal leading-none text-brand transition-transform duration-300" style={{ transform: isOpen ? "rotate(135deg)" : "none" }}>
-                      +
-                    </span>
-                  </button>
-                </h3>
-                {isOpen && (
-                  <p id={`faq-answer-${index}`} className="-mt-2.5 max-w-[640px] px-[22px] pb-6 text-[17px] leading-[1.6] text-body sm:px-[26px]" style={{ animation: "tl-fade .4s cubic-bezier(.2,.8,.2,1) both" }}>
-                    {answer}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <FaqAccordion items={faqs} idPrefix="faq" />
       </div>
     </section>
   );
