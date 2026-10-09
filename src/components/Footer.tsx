@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import BrandMark from "./BrandMark";
 import { CONTACT_EMAIL, DEMO_HREF, PORTAL_URLS, PRIVACY_EMAIL, SUPPORT_EMAIL } from "@/lib/site";
 
-// In-page targets are root-relative so the footer also works on /legal.
+// In-page targets are root-relative so the footer also works on the standalone pages.
 const columns = [
   {
     title: "Platform",
@@ -28,9 +28,10 @@ const columns = [
     links: [
       ["Stakeholder portals", "/#solutions"],
       ["FAQs", "/#faq"],
-      ["Privacy policy", "/legal"],
-      ["Terms of service", "/legal#terms"],
-      ["Contact support", `mailto:${SUPPORT_EMAIL}`],
+      ["Help and support", "/support"],
+      ["Privacy policy", "/privacy"],
+      ["Terms of service", "/terms"],
+      ["Delete your account", "/delete-account"],
     ],
   },
   {
@@ -43,6 +44,18 @@ const columns = [
   },
 ];
 
+const legalLinks = [
+  ["Privacy", "/privacy"],
+  ["Terms", "/terms"],
+  ["Support", "/support"],
+  ["Delete account", "/delete-account"],
+] as const;
+
+/**
+ * Site footer: brand, link columns, the outlined wordmark and the legal row.
+ *
+ * @returns The footer landmark.
+ */
 export default function Footer() {
   return (
     <footer className="bg-cream px-7 pb-14 pt-20">
@@ -84,8 +97,11 @@ export default function Footer() {
         <div className="mt-10 flex flex-wrap justify-between gap-3.5 border-t border-ink/10 pt-6 text-[15px] text-muted">
           <p>© 2026 Talim Education Technology. All rights reserved.</p>
           <div className="flex flex-wrap gap-[18px]">
-            <a href="/legal" className="text-muted">Privacy</a>
-            <a href="/legal#terms" className="text-muted">Terms</a>
+            {legalLinks.map(([label, href]) => (
+              <a key={href} href={href} className="text-muted">
+                {label}
+              </a>
+            ))}
             <a href={`mailto:${PRIVACY_EMAIL}`} className="text-muted">Privacy enquiries</a>
           </div>
         </div>
