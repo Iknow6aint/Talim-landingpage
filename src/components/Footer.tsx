@@ -67,7 +67,7 @@ export default function Footer() {
               <span className="font-display text-[21px] font-black tracking-[-0.03em]">Talim</span>
             </a>
             <p className="mt-[18px] max-w-[260px] text-[17px] leading-[1.55] text-body">Education infrastructure for measurable learning.</p>
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="mt-[18px] inline-block text-base font-semibold text-brand">{SUPPORT_EMAIL}</a>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="mt-[18px] inline-block text-base font-semibold text-brand-deep">{SUPPORT_EMAIL}</a>
           </div>
 
           {columns.map((column) => (
