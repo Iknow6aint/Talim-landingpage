@@ -1,3 +1,6 @@
+/** Canonical origin of the public site; page canonicals are resolved against it. */
+export const SITE_URL = "https://www.mytalim.com";
+
 export const CONTACT_EMAIL = "hello@mytalim.com";
 export const SUPPORT_EMAIL = "support@mytalim.com";
 export const PRIVACY_EMAIL = "privacy@mytalim.com";

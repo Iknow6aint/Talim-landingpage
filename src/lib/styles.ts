@@ -13,3 +13,6 @@ export function gridLines(alpha: number, size: number): CSSProperties {
     backgroundSize: `${size}px ${size}px`,
   };
 }
+
+/** Underlined inline link for running text; the deep brand blue keeps AA contrast on white and cream. */
+export const INLINE_LINK = "font-semibold text-brand-deep underline decoration-brand/40 underline-offset-4 hover:text-ink";
